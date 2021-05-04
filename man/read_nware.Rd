@@ -7,15 +7,15 @@
 read_nware(table = "characteristics", version = "2021-04", filetype = "csv")
 }
 \arguments{
-\item{table}{character}
+\item{table}{Nware table to read. Either "characteristics", "provider_schedule_daily",  "provider_schedule_hourly", "shift", or "shift_age_group".}
 
-\item{version}{character}
+\item{version}{Nware version. Either "2021-04" or "2020-10".}
 
-\item{filetype}{character}
+\item{filetype}{Data file type. Either "csv" or "rds".}
 }
 \value{
-tibble
+A tibble of Nware data.
 }
 \description{
-Read Nware Data that lives in the shared Google Drive folder.
+Read Nware Data from the shared Google Drive folder.
 }

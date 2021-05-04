@@ -7,15 +7,15 @@
 read_licensing(table = "provider", version = "2021-04", filetype = "csv")
 }
 \arguments{
-\item{table}{character}
+\item{table}{Licensing table to read. Either "provider", or "shift".}
 
-\item{version}{character}
+\item{version}{Licensing data version. Either "2021-04" or "2021-02".}
 
-\item{filetype}{character}
+\item{filetype}{Data file type. Either "csv" or "rds".}
 }
 \value{
-tibble
+A tibble of Licensing data.
 }
 \description{
-Read DHS Licensing Data that lives in the shared Google Drive folder.
+Read DHS Licensing Data from the shared Google Drive folder.
 }

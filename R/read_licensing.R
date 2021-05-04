@@ -1,13 +1,14 @@
 #' Read DHS Licensing Data
 #'
-#' Read DHS Licensing Data that lives in the shared Google Drive folder.
+#' Read DHS Licensing Data from the shared Google Drive folder.
 #'
 #'
-#' @param table character
-#' @param version character
-#' @param filetype character
+#' @param table Licensing table to read. Either "provider", or "shift".
+#' @param version Licensing data version. Either "2021-04" or "2021-02".
+#' @param filetype Data file type. Either "csv" or "rds".
 #'
-#' @return tibble
+#' @return A tibble of Licensing data.
+#' @export
 
 read_licensing <- function(table = "provider", version = "2021-04", filetype = "csv"){
 	if(!table %in% c("provider", "shift")){

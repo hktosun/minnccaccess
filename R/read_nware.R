@@ -1,14 +1,14 @@
 #' Read Nware Data
 #'
-#' Read Nware Data that lives in the shared Google Drive folder.
+#' Read Nware Data from the shared Google Drive folder.
 #'
 #'
-#' @param table character
-#' @param version character
-#' @param filetype character
+#' @param table Nware table to read. Either "characteristics", "provider_schedule_daily",  "provider_schedule_hourly", "shift", or "shift_age_group".
+#' @param version Nware version. Either "2021-04" or "2020-10".
+#' @param filetype Data file type. Either "csv" or "rds".
 #'
-#' @return tibble
-
+#' @return A tibble of Nware data.
+#' @export
 
 read_nware <- function(table = "characteristics", version = "2021-04", filetype = "csv"){
 
