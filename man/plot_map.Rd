@@ -14,7 +14,7 @@ plot_map(data, method = "sf", fill_with)
 \item{fill_with}{(Optional) The variable from the sf object to fill the polygons.}
 }
 \value{
-An sf object
+A ggplot or tmap object.
 }
 \description{
 Plot geography shapefiles using geom_sf

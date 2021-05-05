@@ -10,7 +10,7 @@
 #' @param method Plotting method. Can be "sf" or "tmap"
 #' @param fill_with (Optional) The variable from the sf object to fill the polygons.
 #'
-#' @return An sf object
+#' @return A ggplot or tmap object.
 #' @export
 #'
 #'
