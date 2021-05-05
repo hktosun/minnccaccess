@@ -28,7 +28,7 @@ read_licensing <- function(table = "provider", version = "2021-04", filetype = "
 
 	if(filetype == "csv"){
 		df <- readr::read_csv(path, guess_max = 2000000)
-		df <- dplyr::mutate(df, license_id = as.character(license_id))
+		df <- dplyr::mutate(df, license_id = as.character(.data$license_id))
 	}
 	if(filetype == "rds"){
 		df <- readr::read_rds(path)
