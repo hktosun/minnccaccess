@@ -4,7 +4,12 @@
 \alias{read_licensing}
 \title{Read DHS Licensing Data}
 \usage{
-read_licensing(table = "provider", version = "2021-04", filetype = "csv")
+read_licensing(
+  table = "provider",
+  version = "2021-04",
+  filetype = "csv",
+  gdrive_root = "~/Google Drive"
+)
 }
 \arguments{
 \item{table}{Licensing table to read. Either "provider", or "shift".}
@@ -12,6 +17,8 @@ read_licensing(table = "provider", version = "2021-04", filetype = "csv")
 \item{version}{Licensing data version. Either "2021-04" or "2021-02".}
 
 \item{filetype}{Data file type. Either "csv" or "rds".}
+
+\item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
 }
 \value{
 A tibble of Licensing data.

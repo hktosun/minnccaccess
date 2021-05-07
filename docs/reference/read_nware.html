@@ -112,14 +112,19 @@
     <p>Read Nware Data from the shared Google Drive folder.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_nware</span><span class='op'>(</span>table <span class='op'>=</span> <span class='st'>"characteristics"</span>, version <span class='op'>=</span> <span class='st'>"2021-04"</span>, filetype <span class='op'>=</span> <span class='st'>"csv"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>read_nware</span><span class='op'>(</span>
+  table <span class='op'>=</span> <span class='st'>"characteristics"</span>,
+  version <span class='op'>=</span> <span class='st'>"2021-04"</span>,
+  filetype <span class='op'>=</span> <span class='st'>"csv"</span>,
+  gdrive_root <span class='op'>=</span> <span class='st'>"~/Google Drive"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>table</th>
-      <td><p>Nware table to read. Either "characteristics", "provider_schedule_daily",  "provider_schedule_hourly", "shift", or "shift_age_group".</p></td>
+      <td><p>Nware table to read. Either "characteristics", "provider_schedule_daily",  "provider_schedule_hourly", "shift", or "age_group_shift".</p></td>
     </tr>
     <tr>
       <th>version</th>
@@ -128,6 +133,10 @@
     <tr>
       <th>filetype</th>
       <td><p>Data file type. Either "csv" or "rds".</p></td>
+    </tr>
+    <tr>
+      <th>gdrive_root</th>
+      <td><p>The local path to the folder that contains the MinnCCAccess folder.</p></td>
     </tr>
     </table>
 

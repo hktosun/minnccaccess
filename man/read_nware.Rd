@@ -4,14 +4,21 @@
 \alias{read_nware}
 \title{Read Nware Data}
 \usage{
-read_nware(table = "characteristics", version = "2021-04", filetype = "csv")
+read_nware(
+  table = "characteristics",
+  version = "2021-04",
+  filetype = "csv",
+  gdrive_root = "~/Google Drive"
+)
 }
 \arguments{
-\item{table}{Nware table to read. Either "characteristics", "provider_schedule_daily",  "provider_schedule_hourly", "shift", or "shift_age_group".}
+\item{table}{Nware table to read. Either "characteristics", "provider_schedule_daily",  "provider_schedule_hourly", "shift", or "age_group_shift".}
 
 \item{version}{Nware version. Either "2021-04" or "2020-10".}
 
 \item{filetype}{Data file type. Either "csv" or "rds".}
+
+\item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
 }
 \value{
 A tibble of Nware data.
