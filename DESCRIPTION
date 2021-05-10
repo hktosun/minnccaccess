@@ -1,11 +1,12 @@
 Package: minnccaccess
 Title: Minnesota Child Care Research Team R Package
-Version: 0.0.0.1
+Version: 0.0.0.9001
 Authors@R: 
-    person(given = "Hasan",
-           family = "Tosun",
-           role = c("aut", "cre"),
-           email = "tosun007@umn.edu")
+    c(person(given = "Hasan", family = "Tosun", role = c("aut", "cre"), email = "tosun007@umn.edu"),
+      person(given = "Jonathan", family = "Borowsky", role = c("ctb"), email = "borow080@umn.edu"),
+      person(given = "Rodrigo", family = "Franco", role = c("ctb"), email = "franc703@umn.edu"),
+      person(given = "Elizabeth", family = "Davis", role = c("cph"), email = "edavis@umn.edu"),
+      person(given = "Aaron", family = "Sojourner", role = c("cph"), email = "asojourn@umn.edu"))
 Description: This package helps Minnesota Child Care Research Team to easily access data through the use of functions contained in it.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -22,3 +23,7 @@ Imports:
     stringr,
     tidyselect,
     tmap
+Suggests: 
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr
