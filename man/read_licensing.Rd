@@ -7,7 +7,7 @@
 read_licensing(
   table = "provider",
   version = "2021-04",
-  filetype = "csv",
+  filetype = "rds",
   gdrive_root = "~/Google Drive"
 )
 }
