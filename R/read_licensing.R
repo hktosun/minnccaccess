@@ -11,7 +11,7 @@
 #' @return A tibble of Licensing data.
 #' @export
 
-read_licensing <- function(table = "provider", version = "2021-04", filetype = "csv", gdrive_root = "~/Google Drive"){
+read_licensing <- function(table = "provider", version = "2021-04", filetype = "rds", gdrive_root = "~/Google Drive"){
 	if(!table %in% c("provider", "shift")){
 		stop("Table does not exist.")
 	}

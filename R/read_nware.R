@@ -11,7 +11,7 @@
 #' @return A tibble of Nware data.
 #' @export
 
-read_nware <- function(table = "characteristics", version = "2021-04", filetype = "csv", gdrive_root = "~/Google Drive"){
+read_nware <- function(table = "characteristics", version = "2021-04", filetype = "rds", gdrive_root = "~/Google Drive"){
 
 	if(!table %in% c("characteristics", "provider_schedule_daily", "provider_schedule_hourly", "shift", "age_group_shift",
 					 "characteristics_before_2012", "provider_schedule_daily_before_2012", "provider_schedule_hourly_before_2012", "shift_before_2012", "sge_group_shift_before_2012")){
