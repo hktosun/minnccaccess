@@ -5,7 +5,7 @@
 #' @param filetype "rds" or "csv"
 #' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
 #'
-#' @return A tibble of PECC grant data.
+#' @return A tibble
 #' @export
 
 read_pecc <- function(filetype = "rds", gdrive_root = "~/Google Drive"){

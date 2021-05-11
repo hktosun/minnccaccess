@@ -12,7 +12,7 @@ read_pecc(filetype = "rds", gdrive_root = "~/Google Drive")
 \item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
 }
 \value{
-A tibble of PECC grant data.
+A tibble
 }
 \description{
 Read PECC Grant Data from the shared Google Drive folder.
