@@ -37,11 +37,11 @@ We started by going over all the files of type `.zip`, `.xls`, `.xlsx`, `.csv`, 
 
 #### Determining supersets and subsets
 
-Rodrigo went over every file by opening the files in Excel and checking their content. He wrote a log summarizing his findings on the contents of the file and their superset/subset status. 
+We went over every file by opening the files in Excel and checking their content. He wrote a log summarizing his findings on the contents of the file and their superset/subset status. 
 
-Then, Hasan created a crosswalk table that contains information on the supersets of each file. Remember that a superset is a superset of itself. Then, he wrote a script that checks whether a subset is really a subset of its superset. 
+Then, we created a crosswalk table that contains information on the supersets of each file. Remember that a superset is a superset of itself. Then, he wrote a script that checks whether a subset is really a subset of its superset. 
 
-Hasan also checked whether the crosswalk table contains all the Nware files in the raw folder.
+We also checked whether the crosswalk table contains all the Nware files in the raw folder.
 
 #### Determining the table type
 
@@ -49,13 +49,13 @@ Rodrigo checked every file to determine what type of a table that file contains.
 
 #### Determining the date
 
-Rodrigo used the folder names and/or the file names to determine the date the data contained in the file is captured from the database. He used this information to rename the files.
+We used the folder names and/or the file names to determine the date the data contained in the file is captured from the database. He used this information to rename the files.
 
 ### Renaming the files
 
-Rodrigo renamed a copy of each superset and moved them to a new folder, `Data Cabinet/Nware/Step 1 Data`. The naming convention is as follows. The first part of the name contains information on the type of data that the file contains. The types are `general`, `population`, `provider`, `provider_address`, `provider_attributes`, `provider_name`, `provider_schedule`, `shift` and `rate`. The second part of the name is the ISO 8601-formatted date of the snapshot.
+We renamed a copy of each superset and moved them to a new folder, `Data Cabinet/Nware/Step 1 Data`. The naming convention is as follows. The first part of the name contains information on the type of data that the file contains. The types are `general`, `population`, `provider`, `provider_address`, `provider_attributes`, `provider_name`, `provider_schedule`, `shift` and `rate`. The second part of the name is the ISO 8601-formatted date of the snapshot.
 
-Then, Hasan created a crosswalk table that contains the old and the new paths of the files. Then, he wrote a script that checks whether the old and the new files are actually the same. He also handchecked the filenames, by checking whether the file name actually represents the correct table type and the snapshot date.
+Then, we created a crosswalk table that contains the old and the new paths of the files. Then, he wrote a script that checks whether the old and the new files are actually the same. He also handchecked the filenames, by checking whether the file name actually represents the correct table type and the snapshot date.
 
 
 Logs:
