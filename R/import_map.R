@@ -2,6 +2,8 @@
 #'
 #' Read shapefiles from the shared Google Drive folder.
 #'
+#' @importFrom magrittr %>%
+#'
 #' @param geography Geographic unit to map. Can be "census-block", "census-block-group", "census-tract", "county", etc.
 #' @param year Vintage of the geographic unit. Valid inputs depend on what the geography is.
 #' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
@@ -10,9 +12,16 @@
 #' @export
 
 
-import_map <- function(geography, year, gdrive_root = "~/Google Drive"){
+import_map <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
 
-	if(!is.numeric(year)){stop("`year` should be numeric.")}
+	if(!is.null(year) & !is.numeric(year)){
+		stop("`year` should be numeric.")
+	}
+
+
+	if(geography == "zipcode"){
+		geography = "zip-code"
+	}
 
 	subpath <- paste0("/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/", geography, "/", geography, "_", year, "/", geography, "_" , year, ".dbf")
 	path <- paste0(gdrive_root, subpath)
@@ -26,7 +35,9 @@ import_map <- function(geography, year, gdrive_root = "~/Google Drive"){
 
 	if(geography %in% c("census-block", "census-block-group", "census-tract",
 						"census-place", "zcta", "urban-area", "cbsa", "puma")){
-
+		if(is.null(year)) {
+			stop("`year` should be 2010 or 2020 for Census geographies.")
+		}
 		if(!year %in% c(2010, 2020)){
 			stop("`year` should be 2010 or 2020 for Census geographies.")
 		}
@@ -64,11 +75,15 @@ import_map <- function(geography, year, gdrive_root = "~/Google Drive"){
 
 	else if(geography %in% c("congressional-district", "mn-house-district", "mn-senate-district")){
 
+		if(is.null(year)){
+			stop("`year` should be 2012 for political geographies.")
+		}
+
 		if(!year %in% c(2012)){
 			stop("`year` should be 2012 for political geographies.")
 		}
 
-		df <- sf::st_read(path) |>
+		df <- sf::st_read(path) %>%
 			sf::st_transform("+proj=longlat +datum=WGS84")
 		sf::st_crs(df) <- 4326
 		df <- sf::st_transform(df, crs = 4326)
@@ -84,18 +99,29 @@ import_map <- function(geography, year, gdrive_root = "~/Google Drive"){
 	}
 
 	else if(geography == "county"){
-		df <- sf::st_read(path) |>
-			sf::st_transform("+proj=longlat +datum=WGS84") |>
+
+		warning("year is set to 2019.")
+
+		subpath <- "/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/county/county_2019/county_2019.dbf"
+		path <- paste0(gdrive_root, subpath)
+
+
+		df <- sf::st_read(path) %>%
+			sf::st_transform("+proj=longlat +datum=WGS84") %>%
 			dplyr::filter(.data$STATEFP == 27)
 
 		st_crs(df) <- 4326
 
-		df <- df |>
-			sf::st_transform(crs = 4326) |>
+		df <- df %>%
+			sf::st_transform(crs = 4326) %>%
 			dplyr::select(county = .data$NAME)
 	}
 
 	else if(geography == "school-district"){
+
+		if(is.null(year)){
+			stop("Year should be between 2011 and 2021.")
+		}
 
 		if(!dplyr::between(year, 2011, 2021)) {
 			stop("Year should be between 2011 and 2021.")
@@ -108,31 +134,31 @@ import_map <- function(geography, year, gdrive_root = "~/Google Drive"){
 					 `SDNUM` = "school_district_number",
 					 `geometry` = "geometry")
 
-		df <- sf::st_read(path) |>
+		df <- sf::st_read(path) %>%
 			st_transform("+proj=longlat +datum=WGS84")
 
 		st_crs(df) <- 4326
 
-		df <- df |>
-			sf::st_transform(crs = 4326) |>
+		df <- df %>%
+			sf::st_transform(crs = 4326) %>%
 			dplyr::select(tidyselect::one_of("SDNAME", "UNI_NAM", "UNI_TYP", "UNI_MAJ", "SDNUM"))
 
 		colnames(df) <- namekey[names(df)]
 
-		df <- df |>
+		df <- df %>%
 			dplyr::mutate(school_district_number = stringr::str_pad(.data$school_district_number, 4, side = "left", pad = "0"),
-						  school_district_type = stringr::str_pad(.data$school_district_type, 2, side = "left", pad = "0")) |>
-			dplyr::mutate(school_district_id = paste0(.data$school_district_number, "-", .data$school_district_type)) |>
+						  school_district_type = stringr::str_pad(.data$school_district_type, 2, side = "left", pad = "0")) %>%
+			dplyr::mutate(school_district_id = paste0(.data$school_district_number, "-", .data$school_district_type)) %>%
 			dplyr::select(.data$school_district_id)
 	}
 
 	else if(geography == "zip-code"){
-
-		subpath <- paste0("/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/zip-code/zip-code_", year, "/zip_poly.gdb")
+		warning("year is set to 2019.")
+		subpath <- paste0("/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/zip-code/zip-code_2019/zip_poly.gdb")
 		path <- paste0(gdrive_root, subpath)
-		df <- rgdal::readOGR(dsn = path) |>
-			sf::st_as_sf() |>
-			dplyr::filter(.data$STATE == "MN") |>
+		df <- rgdal::readOGR(dsn = path) %>%
+			sf::st_as_sf() %>%
+			dplyr::filter(.data$STATE == "MN") %>%
 			dplyr::select(zipcode = .data$ZIP_CODE)
 
 	}

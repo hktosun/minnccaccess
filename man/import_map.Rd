@@ -4,7 +4,7 @@
 \alias{import_map}
 \title{Read shapefiles.}
 \usage{
-import_map(geography, year, gdrive_root = "~/Google Drive")
+import_map(geography, year = NULL, gdrive_root = "~/Google Drive")
 }
 \arguments{
 \item{geography}{Geographic unit to map. Can be "census-block", "census-block-group", "census-tract", "county", etc.}
