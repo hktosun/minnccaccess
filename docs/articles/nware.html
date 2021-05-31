@@ -69,7 +69,7 @@
 
       
 
-      </header><script src="nware_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><script src="nware_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Nware Data Cleaning</h1>
@@ -117,7 +117,7 @@
 <div id="determining-the-table-type" class="section level4">
 <h4 class="hasAnchor">
 <a href="#determining-the-table-type" class="anchor"></a>Determining the table type</h4>
-<p>Rodrigo checked every file to determine what type of a table that file contains. He used this information to rename the files.</p>
+<p>We checked every file to determine what type of a table that file contains. He used this information to rename the files.</p>
 </div>
 <div id="determining-the-date" class="section level4">
 <h4 class="hasAnchor">
@@ -129,7 +129,7 @@
 <h3 class="hasAnchor">
 <a href="#renaming-the-files" class="anchor"></a>Renaming the files</h3>
 <p>We renamed a copy of each superset and moved them to a new folder, <code>Data Cabinet/Nware/Step 1 Data</code>. The naming convention is as follows. The first part of the name contains information on the type of data that the file contains. The types are <code>general</code>, <code>population</code>, <code>provider</code>, <code>provider_address</code>, <code>provider_attributes</code>, <code>provider_name</code>, <code>provider_schedule</code>, <code>shift</code> and <code>rate</code>. The second part of the name is the ISO 8601-formatted date of the snapshot.</p>
-<p>Then, we created a crosswalk table that contains the old and the new paths of the files. Then, he wrote a script that checks whether the old and the new files are actually the same. He also handchecked the filenames, by checking whether the file name actually represents the correct table type and the snapshot date.</p>
+<p>Then, we created a crosswalk table that contains the old and the new paths of the files. Then, he wrote a script that checks whether the old and the new files are actually the same. He manually checked the file names, by checking whether the file name actually represents the correct table type and the snapshot date.</p>
 <p>Logs:</p>
 <ul>
 <li><a href="https://drive.google.com/file/d/1vB6CHurv5bBsMJWRUfXdjU7t2BfsNJoq">2020-02-17, Rodrigo</a></li>

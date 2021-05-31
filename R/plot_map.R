@@ -2,7 +2,6 @@
 #'
 #' Plot geography shapefiles using geom_sf
 #'
-#' @importFrom magrittr %>%
 #' @import sf
 #' @import tmap
 #' @import ggplot2

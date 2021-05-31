@@ -2,7 +2,6 @@
 #'
 #' Read Public School Enrollment Data from the shared Google Drive folder.
 #'
-#' @importFrom magrittr %>%
 #'
 #' @param table "school" or "district"
 #' @param filetype "rds" or "csv"
@@ -28,7 +27,7 @@ read_public <- function(table = "school", total = TRUE, filetype = "rds", gdrive
 	}
 
 	if(total){
-		df <- df %>%
+		df <- df |>
 			dplyr::filter(.data$gender == "Total", .data$race == "Total", .data$subgroup == "Total")
 	}
 

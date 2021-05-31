@@ -45,7 +45,7 @@ We also checked whether the crosswalk table contains all the Nware files in the 
 
 #### Determining the table type
 
-Rodrigo checked every file to determine what type of a table that file contains. He used this information to rename the files.
+We checked every file to determine what type of a table that file contains. He used this information to rename the files.
 
 #### Determining the date
 
@@ -55,7 +55,7 @@ We used the folder names and/or the file names to determine the date the data co
 
 We renamed a copy of each superset and moved them to a new folder, `Data Cabinet/Nware/Step 1 Data`. The naming convention is as follows. The first part of the name contains information on the type of data that the file contains. The types are `general`, `population`, `provider`, `provider_address`, `provider_attributes`, `provider_name`, `provider_schedule`, `shift` and `rate`. The second part of the name is the ISO 8601-formatted date of the snapshot.
 
-Then, we created a crosswalk table that contains the old and the new paths of the files. Then, he wrote a script that checks whether the old and the new files are actually the same. He also handchecked the filenames, by checking whether the file name actually represents the correct table type and the snapshot date.
+Then, we created a crosswalk table that contains the old and the new paths of the files. Then, he wrote a script that checks whether the old and the new files are actually the same. He manually checked the file names, by checking whether the file name actually represents the correct table type and the snapshot date.
 
 
 Logs:

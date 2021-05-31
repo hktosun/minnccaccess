@@ -2,7 +2,6 @@
 #'
 #' Read shapefiles from the shared Google Drive folder.
 #'
-#' @importFrom magrittr %>%
 #' @param geography Geographic unit to map. Can be "census-block", "census-block-group", "census-tract", "county", etc.
 #' @param year Vintage of the geographic unit. Valid inputs depend on what the geography is.
 #' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
@@ -69,7 +68,7 @@ import_map <- function(geography, year, gdrive_root = "~/Google Drive"){
 			stop("`year` should be 2012 for political geographies.")
 		}
 
-		df <- sf::st_read(path) %>%
+		df <- sf::st_read(path) |>
 			sf::st_transform("+proj=longlat +datum=WGS84")
 		sf::st_crs(df) <- 4326
 		df <- sf::st_transform(df, crs = 4326)
@@ -85,14 +84,14 @@ import_map <- function(geography, year, gdrive_root = "~/Google Drive"){
 	}
 
 	else if(geography == "county"){
-		df <- sf::st_read(path) %>%
-			sf::st_transform("+proj=longlat +datum=WGS84") %>%
+		df <- sf::st_read(path) |>
+			sf::st_transform("+proj=longlat +datum=WGS84") |>
 			dplyr::filter(.data$STATEFP == 27)
 
 		st_crs(df) <- 4326
 
-		df <- df %>%
-			sf::st_transform(crs = 4326) %>%
+		df <- df |>
+			sf::st_transform(crs = 4326) |>
 			dplyr::select(county = .data$NAME)
 	}
 
@@ -109,21 +108,21 @@ import_map <- function(geography, year, gdrive_root = "~/Google Drive"){
 					 `SDNUM` = "school_district_number",
 					 `geometry` = "geometry")
 
-		df <- sf::st_read(path) %>%
+		df <- sf::st_read(path) |>
 			st_transform("+proj=longlat +datum=WGS84")
 
 		st_crs(df) <- 4326
 
-		df <- df %>%
-			sf::st_transform(crs = 4326) %>%
+		df <- df |>
+			sf::st_transform(crs = 4326) |>
 			dplyr::select(tidyselect::one_of("SDNAME", "UNI_NAM", "UNI_TYP", "UNI_MAJ", "SDNUM"))
 
 		colnames(df) <- namekey[names(df)]
 
-		df <- df %>%
+		df <- df |>
 			dplyr::mutate(school_district_number = stringr::str_pad(.data$school_district_number, 4, side = "left", pad = "0"),
-						  school_district_type = stringr::str_pad(.data$school_district_type, 2, side = "left", pad = "0")) %>%
-			dplyr::mutate(school_district_id = paste0(.data$school_district_number, "-", .data$school_district_type)) %>%
+						  school_district_type = stringr::str_pad(.data$school_district_type, 2, side = "left", pad = "0")) |>
+			dplyr::mutate(school_district_id = paste0(.data$school_district_number, "-", .data$school_district_type)) |>
 			dplyr::select(.data$school_district_id)
 	}
 
@@ -131,9 +130,9 @@ import_map <- function(geography, year, gdrive_root = "~/Google Drive"){
 
 		subpath <- paste0("/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/zip-code/zip-code_", year, "/zip_poly.gdb")
 		path <- paste0(gdrive_root, subpath)
-		df <- rgdal::readOGR(dsn = path) %>%
-			sf::st_as_sf() %>%
-			dplyr::filter(.data$STATE == "MN") %>%
+		df <- rgdal::readOGR(dsn = path) |>
+			sf::st_as_sf() |>
+			dplyr::filter(.data$STATE == "MN") |>
 			dplyr::select(zipcode = .data$ZIP_CODE)
 
 	}
