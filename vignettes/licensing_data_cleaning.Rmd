@@ -1,0 +1,28 @@
+---
+title: "Licensing Panel"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Licensing Data Cleaning}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this article, I will describe how we created the Licensing Panel. 
+
+## Goals 
+
+1. Combine raw licensing files into a single database
+
+1. Separate data by unit of observation
+
+1. Impute (some) missing values
+
+
+## 
