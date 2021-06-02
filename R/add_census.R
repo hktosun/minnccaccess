@@ -1,5 +1,5 @@
 #' Add Census variables
-
+#'
 #' Add Census variables to data frames.
 
 #' @importFrom magrittr %>%

@@ -2,8 +2,7 @@
 % Please edit documentation in R/add_census.R
 \name{add_census}
 \alias{add_census}
-\title{Add Census variables
-Add Census variables to data frames.}
+\title{Add Census variables}
 \usage{
 add_census(
   data,
@@ -28,6 +27,5 @@ add_census(
 \item{CENSUS_API_KEY}{Census API key}
 }
 \description{
-Add Census variables
 Add Census variables to data frames.
 }
