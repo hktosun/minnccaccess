@@ -4,7 +4,7 @@
 \alias{add_geometry}
 \title{Add geometries to Census data frames}
 \usage{
-add_geometry(data, geography, year = NULL)
+add_geometry(data, geography, year = NULL, by_name = FALSE)
 }
 \arguments{
 \item{data}{Census data to attach to shapefiles}
@@ -12,6 +12,8 @@ add_geometry(data, geography, year = NULL)
 \item{geography}{Geographic unit  of the geometry}
 
 \item{year}{Vintage of the geographic unit. Valid inputs depend on what the geography is.}
+
+\item{by_name}{TRUE to use county name for matching}
 }
 \value{
 An sf object

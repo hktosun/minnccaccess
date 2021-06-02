@@ -17,3 +17,4 @@ reference:
 - contents:
   - add_locs
   - add_geometry
+  - add_census

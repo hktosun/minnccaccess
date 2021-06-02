@@ -127,7 +127,7 @@
     <p>Add geometries to Census data frames that are imported using other functions in this package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_geometry</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>geography</span>, year <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>add_geometry</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>geography</span>, year <span class='op'>=</span> <span class='cn'>NULL</span>, by_name <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,6 +143,10 @@
     <tr>
       <th>year</th>
       <td><p>Vintage of the geographic unit. Valid inputs depend on what the geography is.</p></td>
+    </tr>
+    <tr>
+      <th>by_name</th>
+      <td><p>TRUE to use county name for matching</p></td>
     </tr>
     </table>
 
