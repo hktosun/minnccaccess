@@ -1,0 +1,19 @@
+reference:
+- title: Get Census/ACS variables
+- contents:
+  - get_census
+  - get_acs
+  - get_centroids
+- title: Read data from Data Cabinet
+- contents:
+  - read_nware
+  - read_licensing
+  - read_public
+  - read_pecc
+- title: Plot maps
+- contents:
+  - plot_map
+- title: Add in extra columns
+- contents:
+  - add_locs
+  - add_geometry

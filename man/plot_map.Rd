@@ -4,7 +4,14 @@
 \alias{plot_map}
 \title{Plot shapefiles}
 \usage{
-plot_map(data, method = "sf", fill_with)
+plot_map(
+  data,
+  method = "tmap",
+  fill_with,
+  tmap_mode = "view",
+  alpha = 0.5,
+  ...
+)
 }
 \arguments{
 \item{data}{An sf object that contains the geometries}
@@ -12,6 +19,12 @@ plot_map(data, method = "sf", fill_with)
 \item{method}{Plotting method. Can be "sf" or "tmap"}
 
 \item{fill_with}{(Optional) The variable from the sf object to fill the polygons.}
+
+\item{tmap_mode}{Map mode if tmap is chosen as the mapping method.}
+
+\item{alpha}{Transparency}
+
+\item{...}{Other arguments passed on to \code{geom_sf}, \code{tmap_polygons}, and \code{tmap_dots}}
 }
 \value{
 A ggplot or tmap object.

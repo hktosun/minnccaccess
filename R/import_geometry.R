@@ -8,11 +8,11 @@
 #' @param year Vintage of the geographic unit. Valid inputs depend on what the geography is.
 #' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
 #'
-#' @return An sf object
 #' @export
+#' @return An sf object
 
 
-import_map <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
+import_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
 
 	if(!is.null(year) & !is.numeric(year)){
 		stop("`year` should be numeric.")
@@ -28,7 +28,7 @@ import_map <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
 
 	if(!geography %in% c("cbsa", "census-block", "census-block-group",
 						 "census-place", "census-tract", "congressional-district",
-						 "county", "mn-house-district", "mn-senate-district",
+						 "county", "state-house-district", "state-senate-district",
 						 "puma", "school-district", "urban-area", "zcta", "zip-code")){
 		stop("Invalid geography.")
 	}
@@ -51,8 +51,8 @@ import_map <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
 						 "census-block"       = dplyr::select(df, census_block_2010 = .data$GEOID10),
 						 "census-block-group" = dplyr::select(df, census_block_group_2010 = .data$GEOID),
 						 "census-tract"       = dplyr::select(df, census_tract_2010 = .data$GEOID),
-						 "census-place"       = dplyr::select(df, census_place_2010 = .data$NAMELSAD),
-						 "zcta"               = dplyr::select(df, zcta_2010 = .data$GEOID10),
+						 "census-place"       = dplyr::select(df, census_place_id_2010 = .data$GEOID, census_place_2010 = .data$NAME),
+						 "zcta"               = dplyr::select(df, zcta_2010 = .data$GEOID10) %>% dplyr::filter(stringr::str_sub(.data$zcta_2010, 1, 2) %in% c("55", "56")),
 						 "urban-area"         = dplyr::select(df, urban_type_2010 = .data$UATYP10, urban_area_2010 = .data$NAMELSAD10),
 						 "cbsa"               = dplyr::select(df, cbsa_id_2010 = .data$GEOID, cbsa_name = .data$NAME, cbsa_type = .data$LSAD),
 						 "puma"               = dplyr::select(df, puma_id_2010 = .data$GEOID10)
@@ -64,8 +64,8 @@ import_map <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
 						 "census-block"       = dplyr::select(df, census_block_2020 = .data$GEOID20),
 						 "census-block-group" = dplyr::select(df, census_block_group_2020 = .data$GEOID20),
 						 "census-tract"       = dplyr::select(census_tract_2020 = .data$GEOID20),
-						 "census-place"       = dplyr::select(df, census_place_2020 = .data$NAMELSAD20),
-						 "zcta"               = dplyr::select(df, zcta_2020 = .data$GEOID20),
+						 "census-place"       = dplyr::select(df, census_place_id_2020 = .data$GEOID20, census_place_2020 = .data$NAME20),
+						 "zcta"               = dplyr::select(df, zcta_2020 = .data$GEOID20) %>% dplyr::filter(stringr::str_sub(.data$zcta_2020, 1, 2) %in% c("55", "56")),
 						 "urban-area"         = dplyr::select(df, urban_type_2020 = .data$UATYP10, urban_area_2020 = .data$NAMELSAD20),
 						 "cbsa"               = dplyr::select(df, cbsa_id_2020 = .data$GEOID, cbsa_type = .data$LSAD),
 						 "puma"               = dplyr::select(df, puma_id_2020 = .data$GEOID20)
@@ -73,7 +73,7 @@ import_map <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
 		}
 	}
 
-	else if(geography %in% c("congressional-district", "mn-house-district", "mn-senate-district")){
+	else if(geography %in% c("congressional-district", "state-house-district", "state-senate-district")){
 
 		if(is.null(year)){
 			stop("`year` should be 2012 for political geographies.")
@@ -91,8 +91,8 @@ import_map <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
 		if(year == 2012){
 			df <- switch(geography,
 						 "congressional-district" = dplyr::select(df, congressional_district_id_2012 = .data$DISTRICT),
-						 "mn-house-district"      = dplyr::select(df, mn_house_district_id_2012 = .data$district),
-						 "mn-senate-district"     = dplyr::select(df, mn_senate_district_id_2012 = .data$district)
+						 "state-house-district"   = dplyr::select(df, state_house_district_id_2012 = .data$district),
+						 "state-senate-district"   = dplyr::select(df, state_senate_district_id_2012 = .data$district)
 			)
 		}
 
