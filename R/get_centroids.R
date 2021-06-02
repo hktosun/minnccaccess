@@ -1,4 +1,4 @@
-#' Get population-weighted centroids for Census geographies.
+#' Get population-weighted centroids for Census geographies
 
 #' Get centroids for Census geographies like census block group, census tract, and for some other geographies.
 

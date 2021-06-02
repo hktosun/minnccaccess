@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_geometry.R
 \name{add_geometry}
 \alias{add_geometry}
-\title{Add geometries to Census data frames.}
+\title{Add geometries to Census data frames}
 \usage{
 add_geometry(data, geography, year = NULL)
 }

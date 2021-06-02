@@ -1,4 +1,4 @@
-#' Add geometries to Census data frames.
+#' Add geometries to Census data frames
 #'
 #' Add geometries to Census data frames that are imported using other functions in this package.
 #'

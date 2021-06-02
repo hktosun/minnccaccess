@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_centroids.R
 \name{get_centroids}
 \alias{get_centroids}
-\title{Get population-weighted centroids for Census geographies.
+\title{Get population-weighted centroids for Census geographies
 Get centroids for Census geographies like census block group, census tract, and for some other geographies.}
 \usage{
 get_centroids(geography, year = 2010)
@@ -13,6 +13,6 @@ get_centroids(geography, year = 2010)
 \item{year}{Vintage}
 }
 \description{
-Get population-weighted centroids for Census geographies.
+Get population-weighted centroids for Census geographies
 Get centroids for Census geographies like census block group, census tract, and for some other geographies.
 }
