@@ -17,7 +17,7 @@ add_locs <- function(data, geography, gdrive_root = "~/Google Drive"){
 	subpath <- "/MinnCCAccess/Data Cabinet/Geographic Data/data/address_geocodes.csv"
 
 	path <- paste0(gdrive_root, subpath)
-	locs <- readr::read_csv(path)
+	locs <- readr::read_csv(path, col_types = readr::cols(.default = readr::col_character()))
 
 	if(!missing(geography)){
 		locs <- locs %>%

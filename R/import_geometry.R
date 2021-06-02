@@ -114,7 +114,7 @@ import_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Driv
 
 		df <- df %>%
 			sf::st_transform(crs = 4326) %>%
-			dplyr::select(county = .data$NAME)
+			dplyr::select(county_id = .data$GEOID, county = .data$NAME)
 	}
 
 	else if(geography == "school-district"){

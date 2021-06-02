@@ -84,7 +84,8 @@ census_pivot_wider <- function(data, geography, year = 2010){
 	else if(geography == "county"){
 		data <- data %>%
 			dplyr::mutate(county_id = paste0(.data$state, .data$county),
-						  county = stringr::str_remove_all(.data$NAME, " County, Minnesota"))
+						  county = stringr::str_remove_all(.data$NAME, " County, Minnesota")) %>%
+			dplyr::select(.data$county_id, tidyselect::everything())
 	}
 
 	else if(geography == "zcta"){
