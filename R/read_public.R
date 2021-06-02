@@ -4,11 +4,11 @@
 #'
 #' @importFrom magrittr %>%
 #'
-#' @param table "school" or "district"
-#' @param subgroups `TRUE` to add demographic subgroups.
-#' @param all_grades `TRUE` to get grade school enrollments as well as K and Pre-K
-#' @param filetype "rds" or "csv"
-#' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
+#' @param table "school" or "school-district". Defaults to "school".
+#' @param subgroups Set TRUE to add demographic (gender, race) and other subgroups. Defaults to FALSE.
+#' @param all_grades Set TRUE to get grade school enrollments as well as enrollment in early education. Defaults to FALSE.
+#' @param filetype "rds" or "csv". Defaults to "rds".
+#' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".
 #'
 #'
 #' @return A tibble

@@ -7,72 +7,56 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-`minnccaccess:read_public()` loads public school enrollment between SY1999 and SY2021.
+[`minnccaccess:read_public()`](../reference/read_public.html) loads public school enrollment between SY1999 and SY2021.
 
 The raw data files are downloaded from [MDE Website](https://public.education.mn.gov/MDEAnalytics/DataTopic.jsp?TOPICID=2) in November 2020.
 
-- All enrollment counts provided are based on the October 1 enrollment reported to the Minnesota Department of Education (MDE). 
+-   All enrollment counts provided are based on the October 1 enrollment reported to the Minnesota Department of Education (MDE).
 
-- From the raw data files: "The Minnesota Department of Education (MDE) is now implementing privacy protection rules in the enrollment data. Within the file, any blank cell is one that cannot be reported due to these rules and you can get more specific information about why using the column definitions. MDE has historically implemented primary suppression in public reporting. For most reports, this meant that if there was a student group with fewer than 10 students, the data was not reported. MDE is now implementing primary suppression, complementary suppression, and data blurring rules to further protect student privacy in compliance with federal and state guidelines."
+-   From the raw data files: "The Minnesota Department of Education (MDE) is now implementing privacy protection rules in the enrollment data. Within the file, any blank cell is one that cannot be reported due to these rules and you can get more specific information about why using the column definitions. MDE has historically implemented primary suppression in public reporting. For most reports, this meant that if there was a student group with fewer than 10 students, the data was not reported. MDE is now implementing primary suppression, complementary suppression, and data blurring rules to further protect student privacy in compliance with federal and state guidelines."
 
 ### `table = "school"`
 
-- Coverage: 2006-2020
+This dataset covers the period between 2006 and 2020. The variables are defined as follows: 
 
-- Column definitions
-	- year								Year of October 1 Enrollment data reported
-	- school_number						School number
-	- school_name						School name
-	- school_district_id				District number-District Type
-	- grade	                    		Grade (PK = School Readiness Plus and Voluntary PreKindergarten, ECSE = Early Childhood Special Education, KG = Kindergarten. All Grades = All grades PK-12)
-	- gender							Gender (Female, Male, Total)
-	- race 								Race (American Indian or Alaska Native, Asian or Pacific Islander, Black or African American, Hispanic or Latino, Native Hawaiian or Pacific Islander, White, Non-white, Two or More Races, Total)
-	- subgroup							Subgroup (Eligible for free or reduced priced meals, English learner, Experiencing homelessness, Receiving special education services)
-	- count 							Number of students enrolled
-	- econ_dev_region					Economic development region
-	- county_mn_id						MN County number
-	- county_name						County name
-	- school_classification				School classification code
-
-- Extra note on `grade`: There are a total of 3 categories in early childhood at different times.
-	- 2006-2013: EC
-	- 2014-2016: ECSE
-	- 2017-2020: ECSE and PK
-
-Definitions were not available for 2006-2013 and 2014-2016 period. According to the definitions in 2017-2020, PK = VPK + SRP, and ECSE = ECSE. We see a continuity over time in 2006-2013 EC, 2014-2016 ECSE and 2017-2020 ECSE enrollment. So, it seems to be that EC = ECSE. According to the official definition of 2017-2020 ECSE it only includes ECSE. Hence, we seem to not have preschool enrollment other than ECSE for the period before 2017.
-
-- Extra note on `race`: In the raw files Asian or Pacific Islander split into Asian and Native Hawaiian and Pacific Islander starting 2014.
-
+    -   `year`: Year of October 1 Enrollment data reported
+    -   `school_number`: School number
+    -   `school_name`: School name
+    -   `school_district_id: District number-District Type
+    -   `grade: Grade (PK = School Readiness Plus and Voluntary PreKindergarten, ECSE = Early Childhood Special Education, KG = Kindergarten. All Grades = All grades PK-12)
+    -   `gender`: Gender (Female, Male, Total)
+    -   `race`: Race (American Indian or Alaska Native, Asian or Pacific Islander, Black or African American, Hispanic or Latino, Native Hawaiian or Pacific Islander, White, Non-white, Two or More Races, Total)
+    -   `subgroup`: Subgroup (Eligible for free or reduced priced meals, English learner, Experiencing homelessness, Receiving special education services)
+    -   `count`: Number of students enrolled
+    -   `econ_dev_region`: Economic development region
+    -   `county_mn_id`: MN County number
+    -   `county_name`: County name
+    -   `school_classification`: School classification code
 
 ### `table = "school-district"`
 
-- All enrollment counts provided are based on the October 1 enrollment reported to the Minnesota Department of Education (MDE). 
+This dataset covers the period between 1999 and 2020. The variables are defined as follows: 
 
-- The Minnesota Department of Education (MDE) is now implementing privacy protection rules in the enrollment data. Within the file, any blank cell is one that cannot be reported due to these rules and you can get more specific information about why using the column definitions. MDE has historically implemented primary suppression in public reporting. For most reports, this meant that if there was a student group with fewer than 10 students, the data was not reported. MDE is now implementing primary suppression, complementary suppression, and data blurring rules to further protect student privacy in compliance with federal and state guidelines.
+    -   `year`: Year of October 1 Enrollment data reported
+    -   `school_district_id`: District number-District Type
+    -   `grade`: Grade (PK = School Readiness Plus and Voluntary PreKindergarten, ECSE = Early Childhood Special Education, KG = Kindergarten. All Grades = All grades PK-12)
+    -   `gender`: Gender (Female, Male, Total)
+    -   `race`: Race (American Indian or Alaska Native, Asian, Asian or Pacific Islander, Black or African American, Hispanic or Latino, Native Hawaiian or Pacific Islander, White, Non-white, Two or More Races, Total)
+    -   `subgroup`: Subgroup (Eligible for free or reduced priced meals, English learner, Experiencing homelessness, Receiving special education services)
+    -   `count`: Number of students enrolled
+    -   `econ_dev_region`: Economic development region
+    -   `county_mn_id`: MN County number
+    -   `county_name`: County name
 
-- Coverage: 1999-2020
+----
 
-- Column definitions
-	- year								Year of October 1 Enrollment data reported
-	- school_district_id				District number-District Type
-	- grade	                    		Grade (PK = School Readiness Plus and Voluntary PreKindergarten, ECSE = Early Childhood Special Education, KG = Kindergarten. All Grades = All grades PK-12)
-	- gender							Gender (Female, Male, Total)
-	- race 								Race (American Indian or Alaska Native, Asian, Asian or Pacific Islander, Black or African American, Hispanic or Latino, Native Hawaiian or Pacific Islander, White, Non-white, Two or More Races, Total)
-	- subgroup							Subgroup (Eligible for free or reduced priced meals, English learner, Experiencing homelessness, Receiving special education services)
-	- count 							Number of students enrolled
-	- econ_dev_region					Economic development region
-	- county_mn_id						MN County number
-	- county_name						County name
+Extra note on `grade`: There are a total of 3 categories in early childhood at different times.
 
-
-- Extra note on `grade`: There are a total of 3 categories in early childhood at different times.
-	- 1999-2005: PK
-	- 2006-2013: EC
-	- 2014-2016: ECSE
-	- 2017-2020: ECSE and PK
-
+    -   1999-2005: PK
+    -   2006-2013: EC
+    -   2014-2016: ECSE
+    -   2017-2020: ECSE and PK
 
 Definitions were not available for 1999-2005, 2006-2013 and 2014-2016 period. According to the definitions in 2017-2020, PK = VPK + SRP, and ECSE = ECSE. We see a continuity over time in 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2020 enrollment. So, it seems to be that the definitions for 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2020 ECSE are the same. According to the official definition of 2017-2020 ECSE it only includes ECSE. Hence, we seem to not have preschool enrollment other than ECSE for the period before 2017.
 
-
-- Extra note on `race`: In the raw files Asian or Pacific Islander split into Asian and Native Hawaiian and Pacific Islander starting 2014.
+Extra note on `race`: In the raw files Asian or Pacific Islander split into Asian and Native Hawaiian and Pacific Islander starting 2014.

@@ -16,15 +16,15 @@ read_public(
 )
 }
 \arguments{
-\item{table}{"school" or "district"}
+\item{table}{"school" or "school-district". Defaults to "school".}
 
-\item{subgroups}{\code{TRUE} to add demographic subgroups.}
+\item{subgroups}{Set TRUE to add demographic (gender, race) and other subgroups. Defaults to FALSE.}
 
-\item{all_grades}{\code{TRUE} to get grade school enrollments as well as K and Pre-K}
+\item{all_grades}{Set TRUE to get grade school enrollments as well as enrollment in early education. Defaults to FALSE.}
 
-\item{filetype}{"rds" or "csv"}
+\item{filetype}{"rds" or "csv". Defaults to "rds".}
 
-\item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
+\item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".}
 }
 \value{
 A tibble
