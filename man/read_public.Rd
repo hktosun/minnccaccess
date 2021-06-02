@@ -9,7 +9,8 @@ Minnesota Department of Education
 \usage{
 read_public(
   table = "school",
-  total = TRUE,
+  subgroups = FALSE,
+  all_grades = FALSE,
   filetype = "rds",
   gdrive_root = "~/Google Drive"
 )
@@ -17,7 +18,9 @@ read_public(
 \arguments{
 \item{table}{"school" or "district"}
 
-\item{total}{\code{TRUE} to ignore demographic subgroups.}
+\item{subgroups}{\code{TRUE} to add demographic subgroups.}
+
+\item{all_grades}{\code{TRUE} to get grade school enrollments as well as K and Pre-K}
 
 \item{filetype}{"rds" or "csv"}
 

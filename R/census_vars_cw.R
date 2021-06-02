@@ -14,6 +14,22 @@
 # 		"kids", "B06001_002E", "population_under5",
 # 		"median income", "B06011_001E", "median_income",
 # 		"preschool enrollment", "B14001_003E", "preschool_enrollment",
-# 		"public preschool enrollment", "B14003_004E", "public_preschool_enrollment")
+# 		"public preschool enrollment", "B14003_004E", "public_preschool_enrollment",
+# 		"family income distribution", "B19101_002E", "fam_income_0_10",
+# 		"family income distribution", "B19101_003E", "fam_income_10_15",
+# 		"family income distribution", "B19101_004E", "fam_income_15_20",
+# 		"family income distribution", "B19101_005E", "fam_income_20_25",
+# 		"family income distribution", "B19101_006E", "fam_income_25_30",
+# 		"family income distribution", "B19101_007E", "fam_income_30_35",
+# 		"family income distribution", "B19101_008E", "fam_income_35_40",
+# 		"family income distribution", "B19101_009E", "fam_income_40_45",
+# 		"family income distribution", "B19101_010E", "fam_income_45_50",
+# 		"family income distribution", "B19101_011E", "fam_income_50_60",
+# 		"family income distribution", "B19101_012E", "fam_income_60_75",
+# 		"family income distribution", "B19101_013E", "fam_income_75_100",
+# 		"family income distribution", "B19101_014E", "fam_income_100_125",
+# 		"family income distribution", "B19101_015E", "fam_income_125_150",
+# 		"family income distribution", "B19101_016E", "fam_income_150_200",
+# 		"family income distribution", "B19101_017E", "fam_income_200_1000")
 #
-# use_data(census_vars, acs_vars, internal = TRUE, overwrite = TRUE)
+# usethis::use_data(census_vars, acs_vars, internal = TRUE, overwrite = TRUE)

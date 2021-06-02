@@ -8,7 +8,7 @@
 #' @param variable Census variable(s) to add
 #' @param geography Geographic unit
 #' @param year Vintage
-#' @param by_name TRUE to use county name for matching
+#' @param by_name TRUE to use county name/census place name for matching
 #' @param CENSUS_API_KEY Census API key
 #'
 
@@ -19,7 +19,7 @@ add_census <- function(data, variable, geography, year = 2010, by_name = FALSE, 
 
 	geography_var <- names(census_df)[1]
 
-	if(by_name & geography == "county"){
+	if(by_name & (geography == "county" | geography == "census-place")){
 		geography_var <- names(census_df)[2]
 	}
 

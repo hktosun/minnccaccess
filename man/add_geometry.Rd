@@ -13,7 +13,7 @@ add_geometry(data, geography, year = NULL, by_name = FALSE)
 
 \item{year}{Vintage of the geographic unit. Valid inputs depend on what the geography is.}
 
-\item{by_name}{TRUE to use county name for matching}
+\item{by_name}{TRUE to use county name/census place name for matching}
 }
 \value{
 An sf object

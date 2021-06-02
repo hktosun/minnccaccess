@@ -22,7 +22,7 @@ add_census(
 
 \item{year}{Vintage}
 
-\item{by_name}{TRUE to use county name for matching}
+\item{by_name}{TRUE to use county name/census place name for matching}
 
 \item{CENSUS_API_KEY}{Census API key}
 }

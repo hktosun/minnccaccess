@@ -7,7 +7,7 @@
 #' @param data Census data to attach to shapefiles
 #' @param geography Geographic unit  of the geometry
 #' @param year Vintage of the geographic unit. Valid inputs depend on what the geography is.
-#' @param by_name TRUE to use county name for matching
+#' @param by_name TRUE to use county name/census place name for matching
 #'
 #' @return An sf object
 #' @export
@@ -28,7 +28,7 @@ add_geometry <- function(data, geography, year = NULL, by_name = FALSE){
 
 	geography_var <- names(shapes)[1]
 
-	if(by_name & geography == "county"){
+	if(by_name & (geography == "county" | geography == "census-place")){
 		geography_var <- names(shapes)[2]
 		shapes <- shapes[, c(2, 1)]
 	}

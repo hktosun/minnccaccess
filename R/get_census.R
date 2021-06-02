@@ -77,7 +77,8 @@ census_pivot_wider <- function(data, geography, year = 2010){
 
 	else if(geography == "census-place"){
 		data <- data %>%
-			dplyr::mutate(census_place_id_2010 = paste0(.data$state, .data$place)) %>%
+			dplyr::mutate(census_place_id_2010 = paste0(.data$state, .data$place),
+						  census_place_2010 = stringr::str_remove(.data$NAME, " CDP, Minnesota| city, Minnesota")) %>%
 			dplyr::select(-.data$place)
 	}
 

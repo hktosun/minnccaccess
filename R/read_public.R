@@ -5,8 +5,9 @@
 #' @importFrom magrittr %>%
 #'
 #' @param table "school" or "district"
+#' @param subgroups `TRUE` to add demographic subgroups.
+#' @param all_grades `TRUE` to get grade school enrollments as well as K and Pre-K
 #' @param filetype "rds" or "csv"
-#' @param total `TRUE` to ignore demographic subgroups.
 #' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
 #'
 #'
@@ -15,7 +16,7 @@
 #' @source Minnesota Department of Education
 #' @export
 
-read_public <- function(table = "school", total = TRUE, filetype = "rds", gdrive_root = "~/Google Drive"){
+read_public <- function(table = "school", subgroups = FALSE, all_grades = FALSE, filetype = "rds", gdrive_root = "~/Google Drive"){
 
 	subpath <- paste0("/MinnCCAccess/Data Cabinet/Public School Enrollment/data/enrollment_", table, ".", filetype)
 	path <- paste0(gdrive_root, subpath)
@@ -27,9 +28,15 @@ read_public <- function(table = "school", total = TRUE, filetype = "rds", gdrive
 		df <- readr::read_rds(path)
 	}
 
-	if(total){
+	if(!all_grades){
 		df <- df %>%
-			dplyr::filter(.data$gender == "Total", .data$race == "Total", .data$subgroup == "Total")
+			dplyr::filter(.data$grade %in% c("EC", "KG", "ECSE", "PK"))
+	}
+
+	if(!subgroups){
+		df <- df %>%
+			dplyr::filter(.data$gender == "Total", .data$race == "Total", .data$subgroup == "Total") %>%
+			dplyr::select(-c(.data$gender, .data$race, .data$subgroup))
 	}
 
 	return(df)
