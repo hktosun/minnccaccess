@@ -1,18 +1,11 @@
 ---
-title: "Licensing Panel"
+title: "Licensing Data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Licensing Data Cleaning}
+  %\VignetteIndexEntry{Licensing Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
 In this article, I will describe how we created the Licensing Panel. 
 
