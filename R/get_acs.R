@@ -33,6 +33,10 @@ create_acs_url <- function(variable, geography, year, CENSUS_API_KEY){
 		url <- paste0(url, "&for=zip%20code%20tabulation%20area:*&in=state:27&key=")
 	}
 
+	else if(geography == "state"){
+		url <- paste0(url, "&for=state:27&key=")
+	}
+
 	url <- paste0(url, CENSUS_API_KEY)
 	url
 }
@@ -106,6 +110,11 @@ acs_pivot_wider <- function(data, geography, year = 2010){
 			dplyr::mutate(state_senate_district_id_2012 = stringr::str_sub(.data$state_senate_district_id_2012, 2, 3))
 	}
 
+	else if(geography == "state"){
+		data <- data %>%
+			dplyr::mutate(name = .data$NAME)
+	}
+
 	data <- data %>%
 		dplyr::select(-.data$state, -.data$NAME) %>%
 		tidyr::pivot_wider(names_from = .data$variable_label, values_from = .data$var)
@@ -141,13 +150,13 @@ get_acs <- function(variable, geography, year = 2019, CENSUS_API_KEY = Sys.geten
 		dplyr::filter(.data$variable_cat %in% variable)
 
 
-	mn <- vars %>%
+	df <- vars %>%
 		dplyr::mutate(url = purrr::map_chr(.data$variable_code, ~create_acs_url(.x, geography, year, CENSUS_API_KEY))) %>%
 		dplyr::mutate(data = purrr::map(url, ~acs_read_url(.x)))
 
-	mn <- mn %>%
+	df <- df %>%
 		acs_pivot_wider(geography, year)
 
-	return(mn)
+	return(df)
 
 }
