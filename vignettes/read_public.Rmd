@@ -9,7 +9,7 @@ vignette: >
 
 [`minnccaccess:read_public()`](../reference/read_public.html) loads public school enrollment between SY1999 and SY2021.
 
-The raw data files are downloaded from [MDE Website](https://public.education.mn.gov/MDEAnalytics/DataTopic.jsp?TOPICID=2) in November 2020.
+The raw data files are downloaded from [MDE Website](https://public.education.mn.gov/MDEAnalytics/DataTopic.jsp?TOPICID=2).
 
 -   All enrollment counts provided are based on the October 1 enrollment reported to the Minnesota Department of Education (MDE).
 
@@ -17,7 +17,7 @@ The raw data files are downloaded from [MDE Website](https://public.education.mn
 
 ### `table = "school"`
 
-This dataset covers the period between 2006 and 2020. The variables are defined as follows: 
+This dataset covers the period between 2006 and 2021. The variables are defined as follows: 
 
     -   `year`: Year of October 1 Enrollment data reported
     -   `school_number`: School number
@@ -35,7 +35,7 @@ This dataset covers the period between 2006 and 2020. The variables are defined 
 
 ### `table = "school-district"`
 
-This dataset covers the period between 1999 and 2020. The variables are defined as follows: 
+This dataset covers the period between 1999 and 2021. The variables are defined as follows: 
 
     -   `year`: Year of October 1 Enrollment data reported
     -   `school_district_id`: District number-District Type
@@ -55,8 +55,8 @@ Extra note on `grade`: There are a total of 3 categories in early childhood at d
     -   1999-2005: PK
     -   2006-2013: EC
     -   2014-2016: ECSE
-    -   2017-2020: ECSE and PK
+    -   2017-2021: ECSE and PK
 
-Definitions were not available for 1999-2005, 2006-2013 and 2014-2016 period. According to the definitions in 2017-2020, PK = VPK + SRP, and ECSE = ECSE. We see a continuity over time in 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2020 enrollment. So, it seems to be that the definitions for 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2020 ECSE are the same. According to the official definition of 2017-2020 ECSE it only includes ECSE. Hence, we seem to not have preschool enrollment other than ECSE for the period before 2017.
+Definitions were not available for 1999-2005, 2006-2013 and 2014-2016 period. According to the definitions in 2017-2021, PK = VPK + SRP, and ECSE = ECSE. We see a continuity over time in 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2021 enrollment. So, it seems to be that the definitions for 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2021 ECSE are the same. According to the official definition of 2017-2021 ECSE it only includes ECSE. Hence, we seem to not have preschool enrollment other than ECSE for the period before 2017.
 
 Extra note on `race`: In the raw files Asian or Pacific Islander split into Asian and Native Hawaiian and Pacific Islander starting 2014.

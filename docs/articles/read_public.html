@@ -89,7 +89,7 @@
     
     
 <p><a href="../reference/read_public.html"><code>minnccaccess:read_public()</code></a> loads public school enrollment between SY1999 and SY2021.</p>
-<p>The raw data files are downloaded from <a href="https://public.education.mn.gov/MDEAnalytics/DataTopic.jsp?TOPICID=2">MDE Website</a> in November 2020.</p>
+<p>The raw data files are downloaded from <a href="https://public.education.mn.gov/MDEAnalytics/DataTopic.jsp?TOPICID=2">MDE Website</a>.</p>
 <ul>
 <li><p>All enrollment counts provided are based on the October 1 enrollment reported to the Minnesota Department of Education (MDE).</p></li>
 <li><p>From the raw data files: “The Minnesota Department of Education (MDE) is now implementing privacy protection rules in the enrollment data. Within the file, any blank cell is one that cannot be reported due to these rules and you can get more specific information about why using the column definitions. MDE has historically implemented primary suppression in public reporting. For most reports, this meant that if there was a student group with fewer than 10 students, the data was not reported. MDE is now implementing primary suppression, complementary suppression, and data blurring rules to further protect student privacy in compliance with federal and state guidelines.”</p></li>
@@ -98,7 +98,7 @@
 <h3 class="hasAnchor">
 <a href="#table-school" class="anchor"></a><code>table = "school"</code>
 </h3>
-<p>This dataset covers the period between 2006 and 2020. The variables are defined as follows:</p>
+<p>This dataset covers the period between 2006 and 2021. The variables are defined as follows:</p>
 <pre><code>-   `year`: Year of October 1 Enrollment data reported
 -   `school_number`: School number
 -   `school_name`: School name
@@ -117,7 +117,7 @@
 <h3 class="hasAnchor">
 <a href="#table-school-district" class="anchor"></a><code>table = "school-district"</code>
 </h3>
-<p>This dataset covers the period between 1999 and 2020. The variables are defined as follows:</p>
+<p>This dataset covers the period between 1999 and 2021. The variables are defined as follows:</p>
 <pre><code>-   `year`: Year of October 1 Enrollment data reported
 -   `school_district_id`: District number-District Type
 -   `grade`: Grade (PK = School Readiness Plus and Voluntary PreKindergarten, ECSE = Early Childhood Special Education, KG = Kindergarten. All Grades = All grades PK-12)
@@ -133,8 +133,8 @@
 <pre><code>-   1999-2005: PK
 -   2006-2013: EC
 -   2014-2016: ECSE
--   2017-2020: ECSE and PK</code></pre>
-<p>Definitions were not available for 1999-2005, 2006-2013 and 2014-2016 period. According to the definitions in 2017-2020, PK = VPK + SRP, and ECSE = ECSE. We see a continuity over time in 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2020 enrollment. So, it seems to be that the definitions for 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2020 ECSE are the same. According to the official definition of 2017-2020 ECSE it only includes ECSE. Hence, we seem to not have preschool enrollment other than ECSE for the period before 2017.</p>
+-   2017-2021: ECSE and PK</code></pre>
+<p>Definitions were not available for 1999-2005, 2006-2013 and 2014-2016 period. According to the definitions in 2017-2021, PK = VPK + SRP, and ECSE = ECSE. We see a continuity over time in 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2021 enrollment. So, it seems to be that the definitions for 1999-2005 PK, 2006-2013 EC, 2014-2016 ECSE and 2017-2021 ECSE are the same. According to the official definition of 2017-2021 ECSE it only includes ECSE. Hence, we seem to not have preschool enrollment other than ECSE for the period before 2017.</p>
 <p>Extra note on <code>race</code>: In the raw files Asian or Pacific Islander split into Asian and Native Hawaiian and Pacific Islander starting 2014.</p>
 </div>
   </div>
