@@ -18,6 +18,7 @@ Imports:
     ggplot2,
     jsonlite,
     magrittr,
+    osrm,
     purrr,
     readr,
     rgdal,

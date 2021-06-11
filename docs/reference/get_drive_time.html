@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • minnccaccess</title>
+<title>Get Euclidean and driving distance — get_drive_time • minnccaccess</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Get Euclidean and driving distance — get_drive_time" />
+<meta property="og:description" content="Get (Euclidean) distance and driving duration using OSRM." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -118,173 +119,50 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Get Euclidean and driving distance</h1>
+    
+    <div class="hidden name"><code>get_drive_time.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Get (Euclidean) distance and driving duration using OSRM.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>get_drive_time</span><span class='op'>(</span>
+  geography <span class='op'>=</span> <span class='st'>"census-tract"</span>,
+  year <span class='op'>=</span> <span class='fl'>2010</span>,
+  destination <span class='op'>=</span> <span class='st'>"licensing"</span>,
+  date <span class='op'>=</span> <span class='st'>"2021-04-01"</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-get-census-acs-variables" class="hasAnchor"><a href="#section-get-census-acs-variables" class="anchor"></a>Get Census/ACS variables</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_census.html">get_census()</a></code> </p>
-        </td>
-        <td><p>Get Decennial Census Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_acs.html">get_acs()</a></code> </p>
-        </td>
-        <td><p>Get ACS Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_centroids.html">get_centroids()</a></code> </p>
-        </td>
-        <td><p>Get population-weighted centroids for Census geographies</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-read-data-from-data-cabinet" class="hasAnchor"><a href="#section-read-data-from-data-cabinet" class="anchor"></a>Read data from Data Cabinet</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="read_nware.html">read_nware()</a></code> </p>
-        </td>
-        <td><p>Read Nware Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_licensing.html">read_licensing()</a></code> </p>
-        </td>
-        <td><p>Read DHS Licensing Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_public.html">read_public()</a></code> </p>
-        </td>
-        <td><p>Read Public School Enrollment Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_pecc.html">read_pecc()</a></code> </p>
-        </td>
-        <td><p>Read PECC Grant Data</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-plot-maps" class="hasAnchor"><a href="#section-plot-maps" class="anchor"></a>Plot maps</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="plot_map.html">plot_map()</a></code> </p>
-        </td>
-        <td><p>Plot shapefiles</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-add-in-extra-columns" class="hasAnchor"><a href="#section-add-in-extra-columns" class="anchor"></a>Add in extra columns</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="add_locs.html">add_locs()</a></code> </p>
-        </td>
-        <td><p>Add geographies</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="add_geometry.html">add_geometry()</a></code> </p>
-        </td>
-        <td><p>Add geometries to Census data frames</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="add_census.html">add_census()</a></code> </p>
-        </td>
-        <td><p>Add Census variables</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="add_acs.html">add_acs()</a></code> </p>
-        </td>
-        <td><p>Add ACS variables
-Add ACS variables to data frames.</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-other" class="hasAnchor"><a href="#section-other" class="anchor"></a>Other</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="import_geometry.html">import_geometry()</a></code> </p>
-        </td>
-        <td><p>Read shapefiles.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_drive_time.html">get_drive_time()</a></code> </p>
-        </td>
-        <td><p>Get Euclidean and driving distance</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>geography</th>
+      <td><p>Geographies to add to. Defaults to all geographies available.</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>Vintage for the geography</p></td>
+    </tr>
+    <tr>
+      <th>destination</th>
+      <td><p>List of providers to calculate distance to</p></td>
+    </tr>
+    <tr>
+      <th>date</th>
+      <td><p>Date</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A tibble</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

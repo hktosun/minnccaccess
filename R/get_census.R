@@ -61,51 +61,43 @@ census_pivot_wider <- function(data, geography, year = 2010){
 		data <- data %>%
 			dplyr::mutate(census_block_2010 = paste0(.data$state, .data$county, .data$tract, .data$block)) %>%
 			dplyr::select(-.data$county, -.data$tract, -.data$block)
-	}
 
-	else if(geography == "census-block-group"){
+	} else if(geography == "census-block-group"){
 		data <- data %>%
 			dplyr::mutate(census_block_group_2010 = paste0(.data$state, .data$county, .data$tract, .data$`block group`)) %>%
 			dplyr::select(-.data$county, -.data$tract, -.data$`block group`)
-	}
 
-	else if(geography == "census-tract"){
+	} else if(geography == "census-tract"){
 		data <- data %>%
 			dplyr::mutate(census_tract_2010 = paste0(.data$state, .data$county, .data$tract)) %>%
 			dplyr::select(-.data$county, -.data$tract)
-	}
 
-	else if(geography == "census-place"){
+	} else if(geography == "census-place"){
 		data <- data %>%
 			dplyr::mutate(census_place_id_2010 = paste0(.data$state, .data$place),
 						  census_place_2010 = stringr::str_remove(.data$NAME, " CDP, Minnesota| city, Minnesota")) %>%
 			dplyr::select(-.data$place)
-	}
 
-	else if(geography == "county"){
+	} else if(geography == "county"){
 		data <- data %>%
 			dplyr::mutate(county_id = paste0(.data$state, .data$county),
 						  county = stringr::str_remove_all(.data$NAME, " County, Minnesota")) %>%
 			dplyr::select(.data$county_id, tidyselect::everything())
-	}
 
-	else if(geography == "zcta"){
+	} else if(geography == "zcta"){
 		data <- data %>%
 			dplyr::rename(zcta_2010 = .data$`zip code tabulation area (or part)`)
-	}
 
-	else if(geography == "congressional-district"){
+	} else if(geography == "congressional-district"){
 		data <- data %>%
 			dplyr::mutate(congressional_district_id_2012 = as.character(readr::parse_number(.data$`congressional district`))) %>%
 			dplyr::select(-.data$`congressional district`)
-	}
 
-	else if(geography == "state-house-district"){
+	} else if(geography == "state-house-district"){
 		data <- data %>%
 			dplyr::rename(state_house_district_id_2012 = .data$`state legislative district (lower chamber)`)
-	}
 
-	else if(geography == "state-senate-district"){
+	} else if(geography == "state-senate-district"){
 		data <- data %>%
 			dplyr::rename(state_senate_district_id_2012 = .data$`state legislative district (upper chamber)`) %>%
 			dplyr::mutate(state_senate_district_id_2012 = stringr::str_sub(.data$state_senate_district_id_2012, 2, 3))
@@ -113,7 +105,8 @@ census_pivot_wider <- function(data, geography, year = 2010){
 
 	data <- data %>%
 		dplyr::select(-.data$state, -.data$NAME) %>%
-		tidyr::pivot_wider(names_from = .data$variable_label, values_from = .data$var)
+		tidyr::pivot_wider(names_from = .data$variable_label,
+						   values_from = .data$var)
 
 	data
 }
