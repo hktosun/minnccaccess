@@ -11,6 +11,8 @@
 #' @param by_name TRUE to use county name for matching
 #' @param CENSUS_API_KEY Census API key
 #'
+#'
+#' @export
 
 
 add_acs <- function(data, variable, geography, year = 2010, by_name = FALSE, CENSUS_API_KEY = Sys.getenv("CENSUS_API_KEY")){
@@ -24,7 +26,7 @@ add_acs <- function(data, variable, geography, year = 2010, by_name = FALSE, CEN
 	}
 
 	data %>%
-		dplyr::left_join(acs_df, by = geography_var)
+		dplyr::inner_join(acs_df, by = geography_var)
 
 
 }

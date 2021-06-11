@@ -24,7 +24,7 @@ add_census <- function(data, variable, geography, year = 2010, by_name = FALSE, 
 	}
 
 	data %>%
-		dplyr::left_join(census_df, by = geography_var)
+		dplyr::inner_join(census_df, by = geography_var)
 
 
 }
