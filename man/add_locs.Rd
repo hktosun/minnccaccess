@@ -4,12 +4,14 @@
 \alias{add_locs}
 \title{Add geographies}
 \usage{
-add_locs(data, geography, gdrive_root = "~/Google Drive")
+add_locs(data, geography, year = NULL, gdrive_root = "~/Google Drive")
 }
 \arguments{
 \item{data}{A tibble with address fields \code{street}, \code{city}, \code{state}.}
 
 \item{geography}{Geographies to add to. Defaults to all geographies available.}
+
+\item{year}{Vintage for the geography}
 
 \item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
 }
