@@ -95,7 +95,7 @@ plot_map <- function(data, method = "tmap", fill_with, tmap_mode = "view", alpha
 			}
 		}
 
-		if("sfc_MULTIPOLYGON" %in% class(data$geometry) | "sfc_POLYGON" %in% class(data$geometry) | "sfc_GEOMETRY" %in% class(data)){
+		if("sfc_MULTIPOLYGON" %in% class(data$geometry) | "sfc_POLYGON" %in% class(data$geometry) | "sfc_GEOMETRY" %in% class(data) | "sfc_POLYGON" %in% class(data)){
 			if(missing(fill_with)){
 				p <- tm_shape(data) +
 					tm_polygons(alpha = alpha, ...) +

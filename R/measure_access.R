@@ -36,7 +36,7 @@ measure_access <- function(geography = "census-tract", year = 2010, as_of = "202
 	seat_per_kid <- distances %>%
 		dplyr::mutate(close_enough = dplyr::if_else(.data$distance <= radius * 1e3 * 1.609, 1, 0)) %>%
 		dplyr::mutate(weighted_population_under5 = dplyr::case_when(
-			.data$close_enough == 1 ~ population_under5 * exp(-((.data$distance)/10000)^4),
+			.data$close_enough == 1 ~ population_under5 * exp(-((.data$distance)/10000)^decay),
 			TRUE ~ NA_real_
 		)) %>%
 		dplyr::group_by(.data$license_id) %>%
@@ -49,7 +49,7 @@ measure_access <- function(geography = "census-tract", year = 2010, as_of = "202
 
 	seats_per_kid <- seat_per_kid %>%
 		dplyr::mutate(weighted_seat_per_kid = dplyr::case_when(
-			.data$close_enough == 1 ~ seat_per_kid * exp(-((.data$distance)/10000)^4),
+			.data$close_enough == 1 ~ seat_per_kid * exp(-((.data$distance)/10000)^decay),
 			TRUE ~ NA_real_
 		)) %>%
 		dplyr::group_by(.data[[geographic_var]]) %>%

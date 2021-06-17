@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read Nware Data — read_nware • minnccaccess</title>
+<title>Pipe operator — %&gt;% • minnccaccess</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Read Nware Data — read_nware" />
-<meta property="og:description" content="Read Nware Data from the shared Google Drive folder." />
+<meta property="og:title" content="Pipe operator — %&gt;%" />
+<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
 
 
 
@@ -121,46 +121,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read Nware Data</h1>
+    <h1>Pipe operator</h1>
     
-    <div class="hidden name"><code>read_nware.Rd</code></div>
+    <div class="hidden name"><code>pipe.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Read Nware Data from the shared Google Drive folder.</p>
+    <p>See <code>magrittr::%&gt;%</code> for details.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_nware</span><span class='op'>(</span>
-  table <span class='op'>=</span> <span class='st'>"characteristics"</span>,
-  version <span class='op'>=</span> <span class='st'>"2021-04"</span>,
-  filetype <span class='op'>=</span> <span class='st'>"rds"</span>,
-  gdrive_root <span class='op'>=</span> <span class='st'>"~/Google Drive"</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='va'>lhs</span> <span class='op'>%&gt;%</span> <span class='va'>rhs</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>table</th>
-      <td><p>Nware table to read. Either "characteristics", "provider_schedule_daily",  "provider_schedule_hourly", "shift", or "age_group_shift".</p></td>
+      <th>lhs</th>
+      <td><p>A value or the magrittr placeholder.</p></td>
     </tr>
     <tr>
-      <th>version</th>
-      <td><p>Nware version. Either "2021-04" or "2020-10".</p></td>
-    </tr>
-    <tr>
-      <th>filetype</th>
-      <td><p>Data file type. Either "csv" or "rds".</p></td>
-    </tr>
-    <tr>
-      <th>gdrive_root</th>
-      <td><p>The local path to the folder that contains the MinnCCAccess folder.</p></td>
+      <th>rhs</th>
+      <td><p>A function call using the magrittr semantics.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of Nware data.</p>
+    <p>The result of calling <code>rhs(lhs)</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

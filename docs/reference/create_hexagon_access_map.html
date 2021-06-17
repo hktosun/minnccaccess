@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read Nware Data — read_nware • minnccaccess</title>
+<title>Create access map using hexagons — create_hexagon_access_map • minnccaccess</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Read Nware Data — read_nware" />
-<meta property="og:description" content="Read Nware Data from the shared Google Drive folder." />
+<meta property="og:title" content="Create access map using hexagons — create_hexagon_access_map" />
+<meta property="og:description" content="Create child care access map using hexagons" />
 
 
 
@@ -121,46 +121,66 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read Nware Data</h1>
+    <h1>Create access map using hexagons</h1>
     
-    <div class="hidden name"><code>read_nware.Rd</code></div>
+    <div class="hidden name"><code>create_hexagon_access_map.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Read Nware Data from the shared Google Drive folder.</p>
+    <p>Create child care access map using hexagons</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_nware</span><span class='op'>(</span>
-  table <span class='op'>=</span> <span class='st'>"characteristics"</span>,
-  version <span class='op'>=</span> <span class='st'>"2021-04"</span>,
-  filetype <span class='op'>=</span> <span class='st'>"rds"</span>,
-  gdrive_root <span class='op'>=</span> <span class='st'>"~/Google Drive"</span>
+    <pre class="usage"><span class='fu'>create_hexagon_access_map</span><span class='op'>(</span>
+  geography <span class='op'>=</span> <span class='st'>"census-block-group"</span>,
+  geography_year <span class='op'>=</span> <span class='fl'>2010</span>,
+  acs_year <span class='op'>=</span> <span class='fl'>2019</span>,
+  hex_side <span class='op'>=</span> <span class='fl'>1</span>,
+  radius <span class='op'>=</span> <span class='fl'>10</span>,
+  decay <span class='op'>=</span> <span class='fl'>4</span>,
+  kid_per_dot <span class='op'>=</span> <span class='fl'>100</span>,
+  as_of <span class='op'>=</span> <span class='st'>"2021-04-01"</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>table</th>
-      <td><p>Nware table to read. Either "characteristics", "provider_schedule_daily",  "provider_schedule_hourly", "shift", or "age_group_shift".</p></td>
+      <th>geography</th>
+      <td><p>Geography</p></td>
     </tr>
     <tr>
-      <th>version</th>
-      <td><p>Nware version. Either "2021-04" or "2020-10".</p></td>
+      <th>geography_year</th>
+      <td><p>Geography year. 2010 or 2020</p></td>
     </tr>
     <tr>
-      <th>filetype</th>
-      <td><p>Data file type. Either "csv" or "rds".</p></td>
+      <th>acs_year</th>
+      <td><p>5-year ACS end year</p></td>
     </tr>
     <tr>
-      <th>gdrive_root</th>
-      <td><p>The local path to the folder that contains the MinnCCAccess folder.</p></td>
+      <th>hex_side</th>
+      <td><p>Length of side of hexagons</p></td>
+    </tr>
+    <tr>
+      <th>radius</th>
+      <td><p>Consider providers/families that are in <code>radius</code> miles or closer.</p></td>
+    </tr>
+    <tr>
+      <th>decay</th>
+      <td><p>Decay parameter (used to weight access by distance) in calculating the access measure</p></td>
+    </tr>
+    <tr>
+      <th>kid_per_dot</th>
+      <td><p>Number of kids per dot on the map</p></td>
+    </tr>
+    <tr>
+      <th>as_of</th>
+      <td><p>Access as of date</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of Nware data.</p>
+    <p>A tmap object</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

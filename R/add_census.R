@@ -11,6 +11,7 @@
 #' @param by_name TRUE to use county name/census place name for matching
 #' @param CENSUS_API_KEY Census API key
 #'
+#' @export
 
 
 add_census <- function(data, variable, geography, year = 2010, by_name = FALSE, CENSUS_API_KEY = Sys.getenv("CENSUS_API_KEY")){
