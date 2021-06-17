@@ -19,7 +19,13 @@ reference:
   - add_geometry
   - add_census
   - add_acs
+- title: Child Care Access map
+- contents:
+  - get_drive_time
+  - create_access_map
+  - measure_access
+  - simulate_families
 - title: Other
 - contents:
   - get_geometry
-  - get_drive_time
+
