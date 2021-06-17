@@ -9,7 +9,7 @@ add_acs(
   data,
   variable,
   geography,
-  year = 2010,
+  year = 2019,
   by_name = FALSE,
   CENSUS_API_KEY = Sys.getenv("CENSUS_API_KEY")
 )

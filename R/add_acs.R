@@ -15,7 +15,7 @@
 #' @export
 
 
-add_acs <- function(data, variable, geography, year = 2010, by_name = FALSE, CENSUS_API_KEY = Sys.getenv("CENSUS_API_KEY")){
+add_acs <- function(data, variable, geography, year = 2019, by_name = FALSE, CENSUS_API_KEY = Sys.getenv("CENSUS_API_KEY")){
 
 	acs_df <- get_acs(variable, geography, year, CENSUS_API_KEY)
 

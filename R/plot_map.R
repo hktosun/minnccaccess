@@ -29,7 +29,7 @@ plot_map <- function(data, method = "tmap", fill_with, tmap_mode = "view", alpha
 
 
 
-	if(!"sf" %in% class(data)){
+	if(!"sf" %in% class(data) & !"sfc" %in% class(data)){
 		n1 <- nrow(data)
 		data <- data %>%
 			dplyr::filter(!is.na(.data$lat) & !is.na(.data$lon)) %>%
@@ -55,7 +55,7 @@ plot_map <- function(data, method = "tmap", fill_with, tmap_mode = "view", alpha
 			}
 		}
 
-		if("sfc_MULTIPOLYGON" %in% class(data$geometry) | "sfc_POLYGON" %in% class(data$geometry)){
+		if("sfc_MULTIPOLYGON" %in% class(data$geometry) | "sfc_POLYGON" %in% class(data$geometry) | "sfc_GEOMETRY" %in% class(data)){
 			if(missing(fill_with)){
 				p <- ggplot(data) +
 					geom_sf(alpha = alpha) +
@@ -95,7 +95,7 @@ plot_map <- function(data, method = "tmap", fill_with, tmap_mode = "view", alpha
 			}
 		}
 
-		if("sfc_MULTIPOLYGON" %in% class(data$geometry) | "sfc_POLYGON" %in% class(data$geometry)){
+		if("sfc_MULTIPOLYGON" %in% class(data$geometry) | "sfc_POLYGON" %in% class(data$geometry) | "sfc_GEOMETRY" %in% class(data)){
 			if(missing(fill_with)){
 				p <- tm_shape(data) +
 					tm_polygons(alpha = alpha, ...) +

@@ -17,7 +17,7 @@
 
 add_geometry <- function(data, geography, year = NULL, by_name = FALSE){
 
-	shapes <- import_geometry(geography = geography, year = year)
+	shapes <- get_geometry(geography = geography, year = year)
 
 	n1 <- nrow(shapes)
 	n2 <- nrow(data)
@@ -34,6 +34,6 @@ add_geometry <- function(data, geography, year = NULL, by_name = FALSE){
 	}
 
 	shapes %>%
-		dplyr::left_join(data, by = geography_var)
+		dplyr::inner_join(data, by = geography_var)
 
 }

@@ -21,5 +21,5 @@ reference:
   - add_acs
 - title: Other
 - contents:
-  - import_geometry
+  - get_geometry
   - get_drive_time

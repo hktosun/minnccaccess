@@ -49,7 +49,7 @@ acs_read_url <- function(url){
 
 }
 
-acs_pivot_wider <- function(data, geography, year = 2010){
+acs_pivot_wider <- function(data, geography){
 
 	data <- data %>%
 		dplyr::select(-.data$url, -.data$variable_cat) %>%
@@ -155,7 +155,13 @@ get_acs <- function(variable, geography, year = 2019, CENSUS_API_KEY = Sys.geten
 		dplyr::mutate(data = purrr::map(url, ~acs_read_url(.x)))
 
 	df <- df %>%
-		acs_pivot_wider(geography, year)
+		acs_pivot_wider(geography)
+
+	if(variable == "kids"){
+		df <- df %>%
+			dplyr::mutate(population_under5 = .data$under5_boys + .data$under5_girls) %>%
+			dplyr::select(-.data$under5_boys, -.data$under5_girls)
+	}
 
 	return(df)
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get drive time — get_drive_time • minnccaccess</title>
+<title>Create synthetic locations for families — simulate_families • minnccaccess</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Get drive time — get_drive_time" />
-<meta property="og:description" content="Get drive time for pairs of locations." />
+<meta property="og:title" content="Create synthetic locations for families — simulate_families" />
+<meta property="og:description" content="Create synthetic locations for families within each geography" />
 
 
 
@@ -121,27 +121,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get drive time</h1>
+    <h1>Create synthetic locations for families</h1>
     
-    <div class="hidden name"><code>get_drive_time.Rd</code></div>
+    <div class="hidden name"><code>simulate_families.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get drive time for pairs of locations.</p>
+    <p>Create synthetic locations for families within each geography</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_drive_time</span><span class='op'>(</span><span class='va'>data</span>, max_distance <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>simulate_families</span><span class='op'>(</span><span class='va'>data</span>, kid_per_dot <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A data frame with a pair of locations. Columns <code>id</code>, <code>lat</code>, <code>lon</code>, <code>id2</code>, <code>lat2</code>, <code>lon2</code> should be present.</p></td>
+      <td><p>Distance/drive time</p></td>
     </tr>
     <tr>
-      <th>max_distance</th>
-      <td><p>Maximum distance to calculate drive times</p></td>
+      <th>kid_per_dot</th>
+      <td><p>Number of kids per dot on map</p></td>
     </tr>
     </table>
 

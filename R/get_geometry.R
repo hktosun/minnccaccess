@@ -12,7 +12,7 @@
 #' @return An sf object
 
 
-import_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
+get_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
 
 	if(!is.null(year) & !is.numeric(year)){
 		stop("`year` should be numeric.")
@@ -29,7 +29,8 @@ import_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Driv
 	if(!geography %in% c("cbsa", "census-block", "census-block-group",
 						 "census-place", "census-tract", "congressional-district",
 						 "county", "state-house-district", "state-senate-district",
-						 "puma", "school-district", "urban-area", "zcta", "zip-code")){
+						 "puma", "school-district", "urban-area", "zcta", "zip-code",
+						 "water-bodies")){
 		stop("Invalid geography.")
 	}
 
@@ -115,6 +116,28 @@ import_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Driv
 		df <- df %>%
 			sf::st_transform(crs = 4326) %>%
 			dplyr::select(county_id = .data$GEOID, county = .data$NAME)
+	}
+
+	else if(geography == "water-bodies"){
+		subpath <- "/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/water-bodies/v10/water-bodies.gdb"
+		path <- paste0(gdrive_root, subpath)
+
+		df <- rgdal::readOGR(dsn = path) %>%
+			sf::st_as_sf()
+	}
+
+	else if(geography == "mn-water-bodies"){
+		subpath <- "/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/shp_water_dnr_hydrography/dnr_hydro_features_all.dbf"
+		path <- paste0(gdrive_root, subpath)
+
+		df <- sf::st_read(path) %>%
+			sf::st_transform("+proj=longlat +datum=WGS84")
+
+		st_crs(df) <- 4326
+
+		df <- df %>%
+			sf::st_transform(crs = 4326)
+
 	}
 
 	else if(geography == "school-district"){

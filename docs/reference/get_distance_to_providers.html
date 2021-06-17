@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get drive time — get_drive_time • minnccaccess</title>
+<title>Get Euclidean  distance — get_distance_to_providers • minnccaccess</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Get drive time — get_drive_time" />
-<meta property="og:description" content="Get drive time for pairs of locations." />
+<meta property="og:title" content="Get Euclidean  distance — get_distance_to_providers" />
+<meta property="og:description" content="Get Euclidean distance from population-weighted centroids to child care providers" />
 
 
 
@@ -121,27 +121,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get drive time</h1>
+    <h1>Get Euclidean  distance</h1>
     
-    <div class="hidden name"><code>get_drive_time.Rd</code></div>
+    <div class="hidden name"><code>get_distance_to_providers.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get drive time for pairs of locations.</p>
+    <p>Get Euclidean distance from population-weighted centroids to child care providers</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_drive_time</span><span class='op'>(</span><span class='va'>data</span>, max_distance <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_distance_to_providers</span><span class='op'>(</span>
+  geography <span class='op'>=</span> <span class='st'>"census-tract"</span>,
+  year <span class='op'>=</span> <span class='fl'>2010</span>,
+  destination <span class='op'>=</span> <span class='st'>"licensing"</span>,
+  as_of <span class='op'>=</span> <span class='st'>"2021-04-01"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A data frame with a pair of locations. Columns <code>id</code>, <code>lat</code>, <code>lon</code>, <code>id2</code>, <code>lat2</code>, <code>lon2</code> should be present.</p></td>
+      <th>geography</th>
+      <td><p>Geographies to add to. Defaults to all geographies available.</p></td>
     </tr>
     <tr>
-      <th>max_distance</th>
-      <td><p>Maximum distance to calculate drive times</p></td>
+      <th>year</th>
+      <td><p>Vintage for the geography</p></td>
+    </tr>
+    <tr>
+      <th>destination</th>
+      <td><p>List of providers to calculate distance to</p></td>
+    </tr>
+    <tr>
+      <th>as_of</th>
+      <td><p>Date</p></td>
     </tr>
     </table>
 
