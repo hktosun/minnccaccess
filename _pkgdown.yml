@@ -25,6 +25,7 @@ reference:
   - create_access_map
   - measure_access
   - simulate_families
+  - create_hexagon_access_map
 - title: Other
 - contents:
   - get_geometry
