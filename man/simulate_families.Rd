@@ -4,7 +4,7 @@
 \alias{simulate_families}
 \title{Create synthetic locations for families}
 \usage{
-simulate_families(data, kid_per_dot = 4)
+simulate_families(data, kid_per_dot)
 }
 \arguments{
 \item{data}{Distance/drive time}
@@ -15,5 +15,5 @@ simulate_families(data, kid_per_dot = 4)
 A tibble
 }
 \description{
-Create synthetic locations for families within each geography
+Create synthetic locations for families with access measure
 }

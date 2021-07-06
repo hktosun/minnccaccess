@@ -6,7 +6,7 @@
 #' @importFrom magrittr %>%
 #'
 #' @param geography Geographies to add to. Defaults to all geographies available.
-#' @param year Vintage for the geography
+#' @param geo_year Vintage for the geography
 #' @param destination List of providers to calculate distance to
 #' @param as_of Date
 #'
@@ -15,21 +15,27 @@
 
 
 
-get_distance_to_providers <- function(geography = "census-tract", year = 2010, destination = "licensing", as_of = "2021-04-01"){
+get_distance_to_providers <- function(geography = "census-tract", geo_year = 2010, destination = "licensing", as_of = "2021-04-01"){
 
 	if(geography == "county"){
 		geographic_var <- "county"
 	} else{
-		geographic_var <- paste0(stringr::str_replace_all(geography, "-", "_"), "_", year)
+		geographic_var <- paste0(stringr::str_replace_all(geography, "-", "_"), "_", geo_year)
 	}
 
 
-	df1 <- get_centroids(geography = geography, year = year) %>%
-		dplyr::rename(id = geographic_var) %>%
-		dplyr::select(.data$id, .data$lat, .data$lon)
+	df1 <- get_centroids(geography = geography, year = geo_year) %>%
+		dplyr::rename(id1 = geographic_var, lat1 = .data$lat, lon1 = .data$lon) %>%
+		dplyr::select(.data$id1, .data$lat1, .data$lon1)
 
-	df1_sf <- df1 %>%
-		sf::st_as_sf(coords = c("lon", "lat"), crs = 4326)
+	df1_m <- df1 %>%
+		sf::st_as_sf(coords = c("lon1", "lat1"), crs = 4326) %>%
+		sf::st_transform("+proj=utm +zone=15 +datum=WGS84 +units=m") %>%
+		sf::st_coordinates() %>%
+		tibble::as_tibble() %>%
+		dplyr::rename(X1 = .data$X, Y1 = .data$Y)
+
+	df1_m$id1 = df1$id1
 
 	if(destination == "licensing"){
 		df2 <- read_licensing() %>%
@@ -41,6 +47,8 @@ get_distance_to_providers <- function(geography = "census-tract", year = 2010, d
 			dplyr::rename(id2 = .data$license_id) %>%
 			dplyr::select(.data$id2, .data$lat2, .data$lon2)
 
+		provider_var <- "license_id"
+
 	} else if(destination == "nware"){
 		df2 <- read_nware() %>%
 			dplyr::filter(.data$date == as.Date(as_of)) %>%
@@ -50,24 +58,26 @@ get_distance_to_providers <- function(geography = "census-tract", year = 2010, d
 			dplyr::filter(!is.na(.data$lat2) & !is.na(.data$lon2)) %>%
 			dplyr::rename(id2 = .data$provider_uid) %>%
 			dplyr::select(.data$id2, .data$lat2, .data$lon2)
+
+		provider_var <- "provider_uid"
 	}
 
-	df2_sf <- df2 %>%
-		sf::st_as_sf(coords = c("lon2", "lat2"), crs = 4326)
-
-	df <- tidyr::expand_grid(df1, df2)
-
-	distances <- sf::st_distance(df1_sf, df2_sf) %>%
+	df2_m <- df2 %>%
+		sf::st_as_sf(coords = c("lon2", "lat2"), crs = 4326) %>%
+		sf::st_transform("+proj=utm +zone=15 +datum=WGS84 +units=m") %>%
+		sf::st_coordinates() %>%
 		tibble::as_tibble() %>%
-		tibble::rowid_to_column() %>%
-		tidyr::pivot_longer(2:(nrow(df2) + 1),
-							names_to = "name",
-							values_to = "distance") %>%
-		dplyr::mutate(distance = as.numeric(.data$distance)) %>%
-		dplyr::pull(.data$distance)
+		dplyr::rename(X2 = .data$X, Y2 = .data$Y)
 
-	df$distance <- distances # in meters
+	df2_m$id2 = df2$id2
 
-	df
+	df_m <- tidyr::expand_grid(df1_m, df2_m)
+
+	df_m <- df_m %>%
+		dplyr::mutate(distance = sqrt((.data$X2 - .data$X1)^2 + (.data$Y2 - .data$Y1)^2)) %>%
+		dplyr::select(.data$id1, .data$id2, .data$distance) %>%
+		dplyr::rename(!!enquo(geographic_var) := .data$id1, !!enquo(provider_var) := .data$id2)
+
+	df_m
 
 }

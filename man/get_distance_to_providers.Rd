@@ -6,7 +6,7 @@
 \usage{
 get_distance_to_providers(
   geography = "census-tract",
-  year = 2010,
+  geo_year = 2010,
   destination = "licensing",
   as_of = "2021-04-01"
 )
@@ -14,7 +14,7 @@ get_distance_to_providers(
 \arguments{
 \item{geography}{Geographies to add to. Defaults to all geographies available.}
 
-\item{year}{Vintage for the geography}
+\item{geo_year}{Vintage for the geography}
 
 \item{destination}{List of providers to calculate distance to}
 

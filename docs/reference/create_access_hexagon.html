@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot shapefiles — plot_map • minnccaccess</title>
+<title>Create access data using hexagons — create_access_hexagon • minnccaccess</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Plot shapefiles — plot_map" />
-<meta property="og:description" content="Plot geography shapefiles using geom_sf" />
+<meta property="og:title" content="Create access data using hexagons — create_access_hexagon" />
+<meta property="og:description" content="Create child care access data using hexagons" />
 
 
 
@@ -121,56 +121,61 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot shapefiles</h1>
+    <h1>Create access data using hexagons</h1>
     
-    <div class="hidden name"><code>plot_map.Rd</code></div>
+    <div class="hidden name"><code>create_access_hexagon.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot geography shapefiles using geom_sf</p>
+    <p>Create child care access data using hexagons</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_map</span><span class='op'>(</span>
-  <span class='va'>data</span>,
-  method <span class='op'>=</span> <span class='st'>"tmap"</span>,
-  <span class='va'>fill_with</span>,
-  tmap_mode <span class='op'>=</span> <span class='st'>"view"</span>,
-  alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
-  <span class='va'>...</span>
+    <pre class="usage"><span class='fu'>create_access_hexagon</span><span class='op'>(</span>
+  geography <span class='op'>=</span> <span class='st'>"census-block-group"</span>,
+  geo_year <span class='op'>=</span> <span class='fl'>2010</span>,
+  acs_year <span class='op'>=</span> <span class='fl'>2019</span>,
+  hex_side <span class='op'>=</span> <span class='fl'>1</span>,
+  radius <span class='op'>=</span> <span class='fl'>10</span>,
+  decay <span class='op'>=</span> <span class='fl'>4</span>,
+  as_of <span class='op'>=</span> <span class='st'>"2021-04-01"</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>An sf object that contains the geometries</p></td>
+      <th>geography</th>
+      <td><p>Geography</p></td>
     </tr>
     <tr>
-      <th>method</th>
-      <td><p>Plotting method. Can be "sf" or "tmap"</p></td>
+      <th>geo_year</th>
+      <td><p>Geography year. 2010 or 2020</p></td>
     </tr>
     <tr>
-      <th>fill_with</th>
-      <td><p>(Optional) The variable from the sf object to fill the polygons.</p></td>
+      <th>acs_year</th>
+      <td><p>5-year ACS end year</p></td>
     </tr>
     <tr>
-      <th>tmap_mode</th>
-      <td><p>Map mode if tmap is chosen as the mapping method.</p></td>
+      <th>hex_side</th>
+      <td><p>Length of side of hexagons</p></td>
     </tr>
     <tr>
-      <th>alpha</th>
-      <td><p>Transparency</p></td>
+      <th>radius</th>
+      <td><p>Consider providers/families that are in <code>radius</code> miles or closer.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Other arguments passed on to <code>geom_sf</code>, <code>tmap_polygons</code>, and <code>tmap_dots</code></p></td>
+      <th>decay</th>
+      <td><p>Decay parameter (used to weight access by distance) in calculating the access measure</p></td>
+    </tr>
+    <tr>
+      <th>as_of</th>
+      <td><p>Access as of date</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A ggplot or tmap object.</p>
+    <p>An sf object</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
