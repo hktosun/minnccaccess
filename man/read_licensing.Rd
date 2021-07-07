@@ -8,6 +8,7 @@ read_licensing(
   table = "provider",
   version = "2021-04",
   filetype = "rds",
+  filled = FALSE,
   gdrive_root = "~/Google Drive"
 )
 }
@@ -17,6 +18,8 @@ read_licensing(
 \item{version}{Licensing data version. Either "2021-04" or "2021-02".}
 
 \item{filetype}{Data file type. Either "csv" or "rds".}
+
+\item{filled}{Missing variables filled in using other data sources (like Nware) or imputation.}
 
 \item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
 }

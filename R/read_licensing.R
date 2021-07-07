@@ -6,12 +6,13 @@
 #' @param table Licensing table to read. Either "provider", or "shift".
 #' @param version Licensing data version. Either "2021-04" or "2021-02".
 #' @param filetype Data file type. Either "csv" or "rds".
+#' @param filled Missing variables filled in using other data sources (like Nware) or imputation.
 #' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
 #'
 #' @return A tibble of Licensing data.
 #' @export
 
-read_licensing <- function(table = "provider", version = "2021-04", filetype = "rds", gdrive_root = "~/Google Drive"){
+read_licensing <- function(table = "provider", version = "2021-04", filetype = "rds", filled = FALSE, gdrive_root = "~/Google Drive"){
 	if(!table %in% c("provider", "shift")){
 		stop("Table does not exist.")
 	}
@@ -19,21 +20,28 @@ read_licensing <- function(table = "provider", version = "2021-04", filetype = "
 		stop("File type does not exist.")
 	}
 
-	if(filetype == ".csv") filetype = "csv"
-	if(filetype == ".rds") filetype = "rds"
+	if(filled){
+		subpath <- "/MinnCCAccess/Data Cabinet/Custom Data Products/For Caitlyn - 2021-05-07/data.csv"
+		path <- paste0(gdrive_root, subpath)
+		df <- readr::read_csv(path)
+	} else {
+
+		if(filetype == ".csv") filetype = "csv"
+		if(filetype == ".rds") filetype = "rds"
 
 
-	subpath <- paste0("/MinnCCAccess/Data Cabinet/Licensing Data/Licensing Data ", version, " Build/data/licensing_panel_", table, ".", filetype)
+		subpath <- paste0("/MinnCCAccess/Data Cabinet/Licensing Data/Licensing Data ", version, " Build/data/licensing_panel_", table, ".", filetype)
 
-	path <- paste0(gdrive_root, subpath)
+		path <- paste0(gdrive_root, subpath)
 
-	if(filetype == "csv"){
-		df <- readr::read_csv(path, guess_max = 2000000)
-		df <- dplyr::mutate(df, license_id = as.character(.data$license_id))
+		if(filetype == "csv"){
+			df <- readr::read_csv(path, guess_max = 2000000)
+			df <- dplyr::mutate(df, license_id = as.character(.data$license_id))
+		}
+		if(filetype == "rds"){
+			df <- readr::read_rds(path)
+		}
 	}
-	if(filetype == "rds"){
-		df <- readr::read_rds(path)
-	}
-	return(df)
+	df
 
 }
