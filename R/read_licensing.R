@@ -21,9 +21,10 @@ read_licensing <- function(table = "provider", version = "2021-04", filetype = "
 	}
 
 	if(filled){
-		subpath <- "/MinnCCAccess/Data Cabinet/Custom Data Products/For Caitlyn - 2021-05-07/data.csv"
-		path <- paste0(gdrive_root, subpath)
-		df <- readr::read_csv(path)
+		subpath <- "/MinnCCAccess/Data Cabinet/Custom Data Products/For Caitlyn - 2021-05-07/data."
+		path <- paste0(gdrive_root, subpath, filetype)
+		if(filetype == "rds") df <- readr::read_rds(path)
+		if(filetype == "csv") df <- readr::read_csv(path)
 	} else {
 
 		if(filetype == ".csv") filetype = "csv"
