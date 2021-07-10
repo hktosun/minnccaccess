@@ -39,6 +39,8 @@ measure_access_hexagon <- function(geography = "census-block-group", geo_year = 
 		dplyr::mutate(hex_id = dplyr::row_number()) %>%
 		sf::st_intersection(state)
 
+	rm(state)
+
 
 	hex_population <- sf::st_intersection(base_geographies, hexagons) %>%
 		dplyr::mutate(intersect_area = sf::st_area(.)) %>%
@@ -49,6 +51,8 @@ measure_access_hexagon <- function(geography = "census-block-group", geo_year = 
 		dplyr::mutate(pop = (.data$intersect_area/.data$area) * .data$population_under5) %>%
 		dplyr::group_by(.data$hex_id) %>%
 		dplyr::summarize(population_under5 = sum(.data$pop))
+
+	rm(base_geographies)
 
 	hexagons <- hexagons %>%
 		dplyr::semi_join(hex_population, by = "hex_id")
@@ -63,6 +67,8 @@ measure_access_hexagon <- function(geography = "census-block-group", geo_year = 
 		tibble::as_tibble() %>%
 		dplyr::rename(X1 = .data$X, Y1 = .data$Y)
 
+	rm(hexagon_centroids)
+
 	hexagon_centroids_m$id1 <- hexagon_centroids$hex_id
 
 	licensing <- read_licensing() %>%
@@ -76,7 +82,7 @@ measure_access_hexagon <- function(geography = "census-block-group", geo_year = 
 		dplyr::filter(!is.na(.data$lat2) & !is.na(.data$lon2)) %>%
 		dplyr::select(.data$id2, .data$lat2, .data$lon2, .data$licensed_capacity)
 
-
+	rm(licensing)
 
 	providers_m <- providers %>%
 		sf::st_as_sf(coords = c("lon2", "lat2"), crs = 4326) %>%
@@ -90,6 +96,8 @@ measure_access_hexagon <- function(geography = "census-block-group", geo_year = 
 
 
 	df_m <- tidyr::expand_grid(hexagon_centroids_m, providers_m)
+
+	rm(providers_m, hexagon_centroids_m)
 
 	df_m <- df_m %>%
 		dplyr::mutate(distance = sqrt((.data$X2 - .data$X1)^2 + (.data$Y2 - .data$Y1)^2)) %>%

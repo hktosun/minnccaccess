@@ -4,18 +4,30 @@
 \alias{map_access}
 \title{Create access map using access data}
 \usage{
-map_access(data, n_color = 5, kid_per_dot = 4, dots = TRUE, fill = TRUE)
+map_access(
+  data,
+  n_color = 5,
+  style,
+  kid_per_dot = 4,
+  dots = TRUE,
+  fill = TRUE,
+  ...
+)
 }
 \arguments{
 \item{data}{Access data}
 
 \item{n_color}{Number of colors}
 
+\item{style}{tmap style}
+
 \item{kid_per_dot}{Number of kids per dot on the map}
 
 \item{dots}{Map family locations}
 
 \item{fill}{Color areas}
+
+\item{...}{Other tmao options}
 }
 \value{
 A tmap object

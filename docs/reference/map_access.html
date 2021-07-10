@@ -133,7 +133,15 @@
     <p>Create child care access map using access data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>map_access</span><span class='op'>(</span><span class='va'>data</span>, n_color <span class='op'>=</span> <span class='fl'>5</span>, kid_per_dot <span class='op'>=</span> <span class='fl'>4</span>, dots <span class='op'>=</span> <span class='cn'>TRUE</span>, fill <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>map_access</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  n_color <span class='op'>=</span> <span class='fl'>5</span>,
+  <span class='va'>style</span>,
+  kid_per_dot <span class='op'>=</span> <span class='fl'>4</span>,
+  dots <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  fill <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,6 +155,10 @@
       <td><p>Number of colors</p></td>
     </tr>
     <tr>
+      <th>style</th>
+      <td><p>tmap style</p></td>
+    </tr>
+    <tr>
       <th>kid_per_dot</th>
       <td><p>Number of kids per dot on the map</p></td>
     </tr>
@@ -157,6 +169,10 @@
     <tr>
       <th>fill</th>
       <td><p>Color areas</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other tmao options</p></td>
     </tr>
     </table>
 
