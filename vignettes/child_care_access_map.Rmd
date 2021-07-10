@@ -23,13 +23,13 @@ library(minnccaccess)
 
 ```{r, eval=FALSE}
 
-create_access(method = "hexagon") %>%
+measure_access(method = "hexagon") %>%
   map_access(n_color = 10, dots = FALSE)
 ```
 
 ### Options
 
-#### Create access data (`create_access()`)
+#### Measure access (`measure_access()`)
 
 ##### method
 ##### geography
