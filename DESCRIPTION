@@ -1,6 +1,6 @@
 Package: minnccaccess
 Title: Minnesota Child Care Research Team R Package
-Version: 0.0.0.9005
+Version: 0.0.0.9006
 Authors@R: 
     c(person(given = "Hasan", family = "Tosun", role = c("aut", "cre"), email = "tosun007@umn.edu"),
       person(given = "Jonathan", family = "Borowsky", role = c("ctb"), email = "borow080@umn.edu"),

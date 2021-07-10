@@ -1,6 +1,6 @@
-#' Measure access
+#' Measure child care access using census geometries
 #'
-#' Measure access of families to child care
+#' Measure access of families to child care using census geographies
 #'
 #'
 
@@ -16,7 +16,7 @@
 #' @export
 
 
-create_access_census <- function(geography = "census-block-group", geo_year = 2010, as_of = "2021-04-01", acs_year = 2019, radius = 10, decay = 4){
+measure_access_census <- function(geography = "census-block-group", geo_year = 2010, as_of = "2021-04-01", acs_year = 2019, radius = 10, decay = 4){
 
 	licensing <- read_licensing() %>%
 		dplyr::filter(.data$date == as_of) %>%

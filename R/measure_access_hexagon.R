@@ -1,6 +1,6 @@
-#' Create access data using hexagons
+#' Measure child care access using hexagons
 #'
-#' Create child care access data using hexagons
+#' Measure access of families to child care using hexagons
 #'
 #' @importFrom magrittr %>%
 #'
@@ -17,7 +17,7 @@
 #' @export
 #'
 
-create_access_hexagon <- function(geography = "census-block-group", geo_year = 2010, acs_year = 2019, hex_side = 1, radius = 10, decay = 4, as_of = "2021-04-01"){
+measure_access_hexagon <- function(geography = "census-block-group", geo_year = 2010, acs_year = 2019, hex_side = 1, radius = 10, decay = 4, as_of = "2021-04-01"){
 
 	geographic_var <- paste0(stringr::str_replace_all(geography, "-", "_"), "_", geo_year)
 

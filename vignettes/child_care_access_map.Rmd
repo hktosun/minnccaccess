@@ -1,0 +1,54 @@
+---
+title: "Child Care Access Map"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{child_care_access_map}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(minnccaccess)
+```
+
+
+## How to create a map yourself?
+
+```{r, eval=FALSE}
+
+create_access(method = "hexagon") %>%
+  map_access(n_color = 10, dots = FALSE)
+```
+
+### Options
+
+#### Create access data (`create_access()`)
+
+##### method
+##### geography
+##### geo_year
+##### acs_year
+##### hex_side
+##### radius
+##### decay 
+##### as_of
+
+#### Map access (`map_access()`)
+
+##### n_color
+##### kid_per_dot
+##### dots
+##### fill
+
+
+
+## How is access measured?
+
+[Davis, E. E., Lee, W. F., & Sojourner, A. (2019). Family-centered measures of access to early care and education. Early Childhood Research Quarterly, 47, 472-486.](https://www.sciencedirect.com/science/article/pii/S0885200618300851)

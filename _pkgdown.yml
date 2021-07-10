@@ -10,9 +10,11 @@ reference:
   - read_licensing
   - read_public
   - read_pecc
+  - read_parentaware
 - title: Plot maps
 - contents:
   - plot_map
+  - map_access
 - title: Add in extra columns
 - contents:
   - add_locs
@@ -22,10 +24,12 @@ reference:
 - title: Child Care Access map
 - contents:
   - get_drive_time
-  - create_access_map
+  - get_distance_to_providers
   - measure_access
+  - measure_access_census
+  - measure_access_hexagon
   - simulate_families
-  - create_hexagon_access_map
+  - map_access
 - title: Other
 - contents:
   - get_geometry
