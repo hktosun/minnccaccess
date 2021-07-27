@@ -8,7 +8,7 @@ read_nware(
   table = "characteristics",
   version = "2021-04",
   filetype = "rds",
-  gdrive_root = "~/Google Drive"
+  GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ read_nware(
 
 \item{filetype}{Data file type. Either "csv" or "rds".}
 
-\item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
+\item{GDRIVE_ROOT}{The local path to the folder that contains the MinnCCAccess folder.}
 }
 \value{
 A tibble of Nware data.
