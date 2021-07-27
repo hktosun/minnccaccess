@@ -5,7 +5,7 @@
 \title{Measure child care access using hexagons}
 \usage{
 measure_access_hexagon(
-  geography = "census-block-group",
+  geography = "census-block",
   geo_year = 2010,
   acs_year = 2019,
   hex_side = 1,

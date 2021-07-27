@@ -119,15 +119,7 @@ get_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive")
 	}
 
 	else if(geography == "water-bodies"){
-		subpath <- "/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/water-bodies/v10/water-bodies.gdb"
-		path <- paste0(gdrive_root, subpath)
-
-		df <- rgdal::readOGR(dsn = path) %>%
-			sf::st_as_sf()
-	}
-
-	else if(geography == "mn-water-bodies"){
-		subpath <- "/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/shp_water_dnr_hydrography/dnr_hydro_features_all.dbf"
+		subpath <- "/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/water-bodies/water-bodies.dbf"
 		path <- paste0(gdrive_root, subpath)
 
 		df <- sf::st_read(path) %>%
@@ -172,7 +164,7 @@ get_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive")
 			dplyr::mutate(school_district_number = stringr::str_pad(.data$school_district_number, 4, side = "left", pad = "0"),
 						  school_district_type = stringr::str_pad(.data$school_district_type, 2, side = "left", pad = "0")) %>%
 			dplyr::mutate(school_district_id = paste0(.data$school_district_number, "-", .data$school_district_type)) %>%
-			dplyr::select(.data$school_district_id)
+			dplyr::select(.data$school_district_id, .data$school_district_name)
 	}
 
 	else if(geography == "zip-code"){
