@@ -4,12 +4,12 @@
 \alias{read_parentaware}
 \title{Read Parent Aware Data}
 \usage{
-read_parentaware(filetype = "rds", gdrive_root = "~/Google Drive")
+read_parentaware(filetype = "rds", GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT"))
 }
 \arguments{
 \item{filetype}{"rds" or "csv". Defaults to "rds".}
 
-\item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".}
+\item{GDRIVE_ROOT}{The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".}
 }
 \value{
 A tibble

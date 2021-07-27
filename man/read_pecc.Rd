@@ -4,12 +4,12 @@
 \alias{read_pecc}
 \title{Read PECC Grant Data}
 \usage{
-read_pecc(filetype = "rds", gdrive_root = "~/Google Drive")
+read_pecc(filetype = "rds", GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT"))
 }
 \arguments{
 \item{filetype}{"rds" or "csv"}
 
-\item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
+\item{GDRIVE_ROOT}{The local path to the folder that contains the MinnCCAccess folder.}
 }
 \value{
 A tibble

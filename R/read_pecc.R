@@ -3,15 +3,15 @@
 #' Read PECC Grant Data from the shared Google Drive folder.
 #'
 #' @param filetype "rds" or "csv"
-#' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
+#' @param GDRIVE_ROOT The local path to the folder that contains the MinnCCAccess folder.
 #'
 #' @return A tibble
 #' @export
 
-read_pecc <- function(filetype = "rds", gdrive_root = "~/Google Drive"){
+read_pecc <- function(filetype = "rds", GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")){
 
 	subpath <- paste0("/MinnCCAccess/Data Cabinet/PECC Grant Data/data/pecc_grant.", filetype)
-	path <- paste0(gdrive_root, subpath)
+	path <- paste0(GDRIVE_ROOT, subpath)
 
 	if(filetype == "csv"){
 		df <- readr::read_csv(path, guess_max = 20000)

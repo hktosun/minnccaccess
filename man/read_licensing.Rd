@@ -9,7 +9,7 @@ read_licensing(
   version = "2021-04",
   filetype = "rds",
   filled = FALSE,
-  gdrive_root = "~/Google Drive"
+  GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ read_licensing(
 
 \item{filled}{Missing variables filled in using other data sources (like Nware) or imputation.}
 
-\item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
+\item{GDRIVE_ROOT}{The local path to the folder that contains the MinnCCAccess folder.}
 }
 \value{
 A tibble of Licensing data.

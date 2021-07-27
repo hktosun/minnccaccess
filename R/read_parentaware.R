@@ -4,17 +4,17 @@
 #'
 #' @importFrom magrittr %>%
 #' @param filetype "rds" or "csv". Defaults to "rds".
-#' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".
+#' @param GDRIVE_ROOT The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".
 #'
 #'
 #' @return A tibble
 #'
 #' @export
 
-read_parentaware <- function(filetype = "rds", gdrive_root = "~/Google Drive"){
+read_parentaware <- function(filetype = "rds", GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")){
 
 	subpath <- paste0("/MinnCCAccess/Data Cabinet/Parent Aware Data/data/parent_aware_rating_panel", ".", filetype)
-	path <- paste0(gdrive_root, subpath)
+	path <- paste0(GDRIVE_ROOT, subpath)
 
 	if(filetype == "csv"){
 		df <- readr::read_csv(path, guess_max = 4000000)

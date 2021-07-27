@@ -7,12 +7,12 @@
 #' @param version Licensing data version. Either "2021-04" or "2021-02".
 #' @param filetype Data file type. Either "csv" or "rds".
 #' @param filled Missing variables filled in using other data sources (like Nware) or imputation.
-#' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
+#' @param GDRIVE_ROOT The local path to the folder that contains the MinnCCAccess folder.
 #'
 #' @return A tibble of Licensing data.
 #' @export
 
-read_licensing <- function(table = "provider", version = "2021-04", filetype = "rds", filled = FALSE, gdrive_root = "~/Google Drive"){
+read_licensing <- function(table = "provider", version = "2021-04", filetype = "rds", filled = FALSE, GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")){
 	if(!table %in% c("provider", "shift")){
 		stop("Table does not exist.")
 	}
@@ -22,7 +22,7 @@ read_licensing <- function(table = "provider", version = "2021-04", filetype = "
 
 	if(filled){
 		subpath <- "/MinnCCAccess/Data Cabinet/Custom Data Products/For Caitlyn - 2021-05-07/data."
-		path <- paste0(gdrive_root, subpath, filetype)
+		path <- paste0(GDRIVE_ROOT, subpath, filetype)
 		if(filetype == "rds") df <- readr::read_rds(path)
 		if(filetype == "csv") df <- readr::read_csv(path)
 	} else {
@@ -33,7 +33,7 @@ read_licensing <- function(table = "provider", version = "2021-04", filetype = "
 
 		subpath <- paste0("/MinnCCAccess/Data Cabinet/Licensing Data/Licensing Data ", version, " Build/data/licensing_panel_", table, ".", filetype)
 
-		path <- paste0(gdrive_root, subpath)
+		path <- paste0(GDRIVE_ROOT, subpath)
 
 		if(filetype == "csv"){
 			df <- readr::read_csv(path, guess_max = 2000000)
