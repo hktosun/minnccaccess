@@ -129,7 +129,7 @@ census_pivot_wider <- function(data, geography, year = 2010){
 
 get_census <- function(variable, geography, year = 2010, CENSUS_API_KEY = Sys.getenv("CENSUS_API_KEY")){
 
-	if(!variable %in% c("population", "race")){
+	if(!variable %in% c("population", "race", "kids")){
 		stop("Invalid variable.")
 	}
 
@@ -153,6 +153,11 @@ get_census <- function(variable, geography, year = 2010, CENSUS_API_KEY = Sys.ge
 	mn <- mn %>%
 		census_pivot_wider(geography, year)
 
-	return(mn)
+	if(variable == "kids"){
+		mn <- mn %>%
+			dplyr::mutate(population_under5 = .data$under5_male + .data$under5_female) %>%
+			dplyr::select(-.data$under5_male, -.data$under5_female)
+	}
+
 
 }
