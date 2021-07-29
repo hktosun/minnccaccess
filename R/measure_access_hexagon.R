@@ -17,19 +17,30 @@
 #' @export
 #'
 
-measure_access_hexagon <- function(geography = "census-block-group", geo_year = 2010, acs_year = 2019, hex_side = 1, radius = 10, decay = 4, as_of = "2021-04-01"){
+measure_access_hexagon <- function(geography = "census-block", geo_year = 2010, acs_year = 2019, hex_side = 1, radius = 10, decay = 4, as_of = "2021-04-01"){
 
 	geographic_var <- paste0(stringr::str_replace_all(geography, "-", "_"), "_", geo_year)
 
-	base_geographies <- get_geometry(geography, geo_year) %>%
+	water_all <- get_geometry("water-bodies")
+
+	water <- water_all %>%
+		dplyr::slice_max(.data$acres, n = 15000) %>%
 		sf::st_transform("+proj=utm +zone=15 +datum=NAD83 +units=m") %>%
-		dplyr::mutate(area = sf::st_area(.)) %>%
-		dplyr::mutate(area = as.numeric(.data$area)) %>%
-		add_acs("kids", geography, year = acs_year)
+		sf::st_union()
 
 	state <- get_geometry("state-house-district", year = 2012) %>%
 		sf::st_union() %>%
 		sf::st_transform("+proj=utm +zone=15 +datum=NAD83 +units=m")
+
+
+	base_geographies <- get_geometry(geography, geo_year) %>%
+		add_census("kids", geography, year = geo_year) %>%
+		dplyr::filter(.data$population_under5 != 0) %>%
+		sf::st_transform("+proj=utm +zone=15 +datum=NAD83 +units=m") %>%
+		dplyr::mutate(area = sf::st_area(.)) %>%
+		dplyr::mutate(area = as.numeric(.data$area)) %>%
+		sf::st_intersection(state) %>%
+		sf::st_difference(water)
 
 
 	hexagons <- state %>%
@@ -37,7 +48,8 @@ measure_access_hexagon <- function(geography = "census-block-group", geo_year = 
 		tibble::as_tibble() %>%
 		sf::st_as_sf() %>%
 		dplyr::mutate(hex_id = dplyr::row_number()) %>%
-		sf::st_intersection(state)
+		sf::st_intersection(state) %>%
+		sf::st_difference(water)
 
 	rm(state)
 
@@ -67,9 +79,9 @@ measure_access_hexagon <- function(geography = "census-block-group", geo_year = 
 		tibble::as_tibble() %>%
 		dplyr::rename(X1 = .data$X, Y1 = .data$Y)
 
-	rm(hexagon_centroids)
-
 	hexagon_centroids_m$id1 <- hexagon_centroids$hex_id
+
+	rm(hexagon_centroids)
 
 	licensing <- read_licensing() %>%
 		dplyr::filter(.data$date == as_of) %>%

@@ -7,7 +7,7 @@
 map_access(
   data,
   n_color = 5,
-  style,
+  style = "fixed",
   kid_per_dot = 4,
   dots = TRUE,
   fill = TRUE,

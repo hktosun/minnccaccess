@@ -19,7 +19,7 @@
 #'
 
 
-map_access <- function(data, n_color = 5, style, kid_per_dot = 4, dots = TRUE, fill = TRUE, ...){
+map_access <- function(data, n_color = 5, style = "fixed", kid_per_dot = 4, dots = TRUE, fill = TRUE, ...){
 
 	tmap::tmap_mode("view")
 
@@ -30,8 +30,11 @@ map_access <- function(data, n_color = 5, style, kid_per_dot = 4, dots = TRUE, f
 	palette5 <- c("#db4325", "#eda450", "#e7e2bd", "#54c3ac", "#0c6565") # color palette taken from npr
 	palette10 <- c("#a73d37", "#c4684c", "#dd9669", "#ecbc88", "#f9e7ad", "#e6eebc", "#bbd1b1", "#8eb2a5", "#649296", "#417385") # color palette taken from opportunityatlas
 
-	access_max <- ceiling(max(data$seat_per_kid) * 10)/10
-	breaks <- seq(0, access_max, access_max/n_color)
+
+	if(style == "fixed"){
+		access_max <- ceiling(max(data$seat_per_kid) * 10)/10
+		breaks <- seq(0, access_max, access_max/n_color)
+	}
 
 	if(n_color == 5){
 		palette = palette5
@@ -39,18 +42,49 @@ map_access <- function(data, n_color = 5, style, kid_per_dot = 4, dots = TRUE, f
 		palette = palette10
 	}
 
-	# breaks  Percentiles with differently populated areas don't make sense.
-	#rrr$gps$plot1$tmLayer2$fill.legend.hist.misc$breaks
+	# breaks Percentiles with differently populated areas don't make sense.
+	#dots_map$gps$plot1$tmLayer2$fill.legend.hist.misc$breaks
 
 	if(dots){
-		dots_map <- tmap::tm_shape(families) +
-			tmap::tm_dots(col = "seat_per_kid", style = style, palette = palette, n = n_color, alpha = 1, border.lwd = 1,
-						  breaks = breaks, ...)
+		if(style == "fixed"){
+			dots_map <- tmap::tm_shape(families) +
+				tmap::tm_dots(col = "seat_per_kid", style = style, palette = palette, n = n_color, alpha = 1, breaks = breaks)
+		}
+
+		if(style == "kmeans"){
+
+			dots_map <- tmap::tm_shape(families) +
+				tmap::tm_dots(col = "seat_per_kid", style = style, palette = palette, n = n_color, alpha = 1)
+
+			style = "fixed"
+			p <- print(dots_map, mode = "plot", show = FALSE)
+			dot_palette <- p$gps$plot1$tmLayer2$symbol.col.legend.palette
+			dot_breaks <- p$gps$plot1$tmLayer2$symbol.col.legend.hist.misc$breaks
+			if(dot_breaks[n_color + 1] < max(data$seat_per_kid)){
+				dot_breaks[n_color + 1] <- max(data$seat_per_kid)
+			}
+			dots_map <- tmap::tm_shape(families) +
+				tmap::tm_dots(col = "seat_per_kid", style = style, palette = dot_palette, alpha = 1, breaks = dot_breaks)
+
+			style = "kmeans"
+
+		}
 	}
 	if(fill){
-		fill_map <- tmap::tm_shape(data) +
-			tmap::tm_polygons(col = "seat_per_kid", style = style, palette = palette, n = n_color, alpha = 0.5,
-							  breaks = breaks, lwd = 0.01, ...)
+		if(style == "kmeans"){
+			style = "fixed"
+
+			fill_map <- tmap::tm_shape(data) +
+				tmap::tm_polygons(col = "seat_per_kid", style = style, palette = dot_palette, alpha = 0.5, lwd = 0.01, breaks = dot_breaks)
+
+			style = "kmeans"
+		} else if(style == "fixed"){
+
+			fill_map <- tmap::tm_shape(data) +
+				tmap::tm_polygons(col = "seat_per_kid", style = style, palette = palette, n = n_color, alpha = 0.5,
+								  breaks = breaks, lwd = 0.01)
+
+		}
 	}
 
 	if(dots & fill){

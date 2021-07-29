@@ -4,14 +4,14 @@
 \alias{get_geometry}
 \title{Read shapefiles.}
 \usage{
-get_geometry(geography, year = NULL, gdrive_root = "~/Google Drive")
+get_geometry(geography, year = NULL, GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT"))
 }
 \arguments{
 \item{geography}{Geographic unit to map. Can be "census-block", "census-block-group", "census-tract", "county", etc.}
 
 \item{year}{Vintage of the geographic unit. Valid inputs depend on what the geography is.}
 
-\item{gdrive_root}{The local path to the folder that contains the MinnCCAccess folder.}
+\item{GDRIVE_ROOT}{The local path to the folder that contains the MinnCCAccess folder.}
 }
 \value{
 An sf object

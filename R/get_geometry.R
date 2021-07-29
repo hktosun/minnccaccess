@@ -6,13 +6,13 @@
 #'
 #' @param geography Geographic unit to map. Can be "census-block", "census-block-group", "census-tract", "county", etc.
 #' @param year Vintage of the geographic unit. Valid inputs depend on what the geography is.
-#' @param gdrive_root The local path to the folder that contains the MinnCCAccess folder.
+#' @param GDRIVE_ROOT The local path to the folder that contains the MinnCCAccess folder.
 #'
 #' @export
 #' @return An sf object
 
 
-get_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive"){
+get_geometry <- function(geography, year = NULL, GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")){
 
 	if(!is.null(year) & !is.numeric(year)){
 		stop("`year` should be numeric.")
@@ -24,13 +24,13 @@ get_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive")
 	}
 
 	subpath <- paste0("/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/", geography, "/", geography, "_", year, "/", geography, "_" , year, ".dbf")
-	path <- paste0(gdrive_root, subpath)
+	path <- paste0(GDRIVE_ROOT, subpath)
 
 	if(!geography %in% c("cbsa", "census-block", "census-block-group",
 						 "census-place", "census-tract", "congressional-district",
 						 "county", "state-house-district", "state-senate-district",
 						 "puma", "school-district", "urban-area", "zcta", "zip-code",
-						 "water-bodies")){
+						 "water-bodies", "american-indian-reservation")){
 		stop("Invalid geography.")
 	}
 
@@ -104,7 +104,7 @@ get_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive")
 		warning("year is set to 2019.")
 
 		subpath <- "/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/county/county_2019/county_2019.dbf"
-		path <- paste0(gdrive_root, subpath)
+		path <- paste0(GDRIVE_ROOT, subpath)
 
 
 		df <- sf::st_read(path) %>%
@@ -120,7 +120,7 @@ get_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive")
 
 	else if(geography == "water-bodies"){
 		subpath <- "/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/water-bodies/water-bodies.dbf"
-		path <- paste0(gdrive_root, subpath)
+		path <- paste0(GDRIVE_ROOT, subpath)
 
 		df <- sf::st_read(path) %>%
 			sf::st_transform("+proj=longlat +datum=WGS84")
@@ -170,11 +170,26 @@ get_geometry <- function(geography, year = NULL, gdrive_root = "~/Google Drive")
 	else if(geography == "zip-code"){
 		warning("year is set to 2019.")
 		subpath <- paste0("/MinnCCAccess/Data Cabinet/Geographic Data/shapefiles/zip-code/zip-code_2019/zip_poly.gdb")
-		path <- paste0(gdrive_root, subpath)
+		path <- paste0(GDRIVE_ROOT, subpath)
 		df <- rgdal::readOGR(dsn = path) %>%
 			sf::st_as_sf() %>%
 			dplyr::filter(.data$STATE == "MN") %>%
 			dplyr::select(zipcode = .data$ZIP_CODE)
+
+	}
+
+	else if(geography == "american-indian-reservation"){
+
+		df <- sf::st_read(path) %>%
+			sf::st_transform("+proj=longlat +datum=WGS84")
+
+		if(year == 2010){
+			df <- df %>%
+				dplyr::select(reservation_name_2010 = .data$NAME)
+		} else if(year == 2020){
+			df <- df %>%
+				dplyr::select(reservation_name_2020 = .data$NAME)
+		}
 
 	}
 	df
