@@ -22,6 +22,7 @@ add_locs <- function(data, geography, year = NULL, gdrive_root = "~/Google Drive
 	locs <- readr::read_csv(path, col_types = readr::cols(.default = readr::col_character()))
 
 
+
 	if(missing(geography)){
 		locs <- locs %>%
 			dplyr::select(.data$street, .data$city, .data$state, .data$lat, .data$lon)
@@ -35,6 +36,7 @@ add_locs <- function(data, geography, year = NULL, gdrive_root = "~/Google Drive
 		locs <- locs %>%
 			dplyr::select(.data$street, .data$city, .data$state, .data$lat, .data$lon, tidyselect::all_of(geographic_var))
 	}
+
 
 	data <- dplyr::left_join(data, locs, by = c("street", "city", "state"))
 

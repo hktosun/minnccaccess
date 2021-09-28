@@ -30,7 +30,7 @@ get_geometry <- function(geography, year = NULL, GDRIVE_ROOT = Sys.getenv("GDRIV
 						 "census-place", "census-tract", "congressional-district",
 						 "county", "state-house-district", "state-senate-district",
 						 "puma", "school-district", "urban-area", "zcta", "zip-code",
-						 "water-bodies", "american-indian-reservation")){
+						 "water-bodies", "american-indian-reservation", "school-location")){
 		stop("Invalid geography.")
 	}
 
@@ -52,7 +52,7 @@ get_geometry <- function(geography, year = NULL, GDRIVE_ROOT = Sys.getenv("GDRIV
 						 "census-block"       = dplyr::select(df, census_block_2010 = .data$GEOID10),
 						 "census-block-group" = dplyr::select(df, census_block_group_2010 = .data$GEOID),
 						 "census-tract"       = dplyr::select(df, census_tract_2010 = .data$GEOID),
-						 "census-place"       = dplyr::select(df, census_place_id_2010 = .data$GEOID, census_place_2010 = .data$NAME),
+						 "census-place"       = dplyr::select(df, census_place_id_2010 = .data$GEOID, census_place_2010 = .data$NAME) %>% dplyr::filter(!census_place_id_2010 %in% c("2718440", "2739394")),
 						 "zcta"               = dplyr::select(df, zcta_2010 = .data$GEOID10) %>% dplyr::filter(stringr::str_sub(.data$zcta_2010, 1, 2) %in% c("55", "56")),
 						 "urban-area"         = dplyr::select(df, urban_type_2010 = .data$UATYP10, urban_area_2010 = .data$NAMELSAD10),
 						 "cbsa"               = dplyr::select(df, cbsa_id_2010 = .data$GEOID, cbsa_name = .data$NAME, cbsa_type = .data$LSAD),
@@ -192,6 +192,24 @@ get_geometry <- function(geography, year = NULL, GDRIVE_ROOT = Sys.getenv("GDRIV
 		}
 
 	}
+
+	else if(geography == "school-location"){
+		df <- sf::st_read(path) %>%
+			sf::st_transform("+proj=longlat +datum=WGS84")
+
+		df <- df %>%
+			dplyr::mutate(school_district_id = paste0(UNI_MAJ, "-", UNI_TYP),
+				   school_number = stringr::str_pad(UNI_IMD, 3, side = "left", pad = "0")) %>%
+			dplyr::mutate_at(dplyr::vars(school_district_id, school_number), as.character) %>%
+			dplyr::mutate(school_number = dplyr::case_when(
+				school_district_id == "0347-01" & school_number == "107" ~ "099",
+				TRUE ~ school_number
+			)) %>%
+			dplyr::filter(school_number != "000") %>%
+			dplyr::distinct(school_district_id, school_number, .keep_all = TRUE) %>%
+			dplyr::select(school_district_id, school_number)
+	}
+
 	df
 }
 

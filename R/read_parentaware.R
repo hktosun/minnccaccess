@@ -4,7 +4,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @param filetype "rds" or "csv". Defaults to "rds".
-#' @param GDRIVE_ROOT The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".
+#' @param GDRIVE_ROOT The local path to the folder that contains the MinnCCAccess folder.
 #'
 #'
 #' @return A tibble

@@ -6,7 +6,7 @@
 \usage{
 read_nware(
   table = "characteristics",
-  version = "2021-04",
+  version,
   filetype = "rds",
   GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")
 )

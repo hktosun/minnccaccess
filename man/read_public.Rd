@@ -24,7 +24,7 @@ read_public(
 
 \item{filetype}{"rds" or "csv". Defaults to "rds".}
 
-\item{GDRIVE_ROOT}{The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".}
+\item{GDRIVE_ROOT}{The local path to the folder that contains the MinnCCAccess folder.}
 }
 \value{
 A tibble

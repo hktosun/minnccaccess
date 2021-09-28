@@ -21,7 +21,7 @@ add_acs <- function(data, variable, geography, year = 2019, by_name = FALSE, CEN
 
 	geography_var <- names(acs_df)[1]
 
-	if(by_name & geography == "county"){
+	if(by_name & (geography == "county" | geography == "census-place")){
 		geography_var <- names(acs_df)[2]
 	}
 

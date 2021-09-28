@@ -8,7 +8,7 @@
 #' @param subgroups Set TRUE to add demographic (gender, race) and other subgroups. Defaults to FALSE.
 #' @param all_grades Set TRUE to get grade school enrollments as well as enrollment in early education. Defaults to FALSE.
 #' @param filetype "rds" or "csv". Defaults to "rds".
-#' @param GDRIVE_ROOT The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".
+#' @param GDRIVE_ROOT The local path to the folder that contains the MinnCCAccess folder.
 #'
 #'
 #' @return A tibble

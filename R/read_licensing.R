@@ -12,7 +12,7 @@
 #' @return A tibble of Licensing data.
 #' @export
 
-read_licensing <- function(table = "provider", version = "2021-04", filetype = "rds", filled = FALSE, GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")){
+read_licensing <- function(table = "provider", version, filetype = "rds", filled = FALSE, GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")){
 	if(!table %in% c("provider", "shift")){
 		stop("Table does not exist.")
 	}
@@ -21,7 +21,7 @@ read_licensing <- function(table = "provider", version = "2021-04", filetype = "
 	}
 
 	if(filled){
-		subpath <- "/MinnCCAccess/Data Cabinet/Custom Data Products/For Caitlyn - 2021-05-07/data."
+		subpath <- "/MinnCCAccess/Data Cabinet/Custom Data Products/For Hasan - 2021-09-26/data."
 		path <- paste0(GDRIVE_ROOT, subpath, filetype)
 		if(filetype == "rds") df <- readr::read_rds(path)
 		if(filetype == "csv") df <- readr::read_csv(path)

@@ -76,7 +76,8 @@ census_pivot_wider <- function(data, geography, year = 2010){
 		data <- data %>%
 			dplyr::mutate(census_place_id_2010 = paste0(.data$state, .data$place),
 						  census_place_2010 = stringr::str_remove(.data$NAME, " CDP, Minnesota| city, Minnesota")) %>%
-			dplyr::select(-.data$place)
+			dplyr::select(-.data$place) %>%
+			dplyr::filter(!census_place_id_2010 %in% c("2718440", "2739394"))
 
 	} else if(geography == "county"){
 		data <- data %>%
@@ -153,11 +154,13 @@ get_census <- function(variable, geography, year = 2010, CENSUS_API_KEY = Sys.ge
 	mn <- mn %>%
 		census_pivot_wider(geography, year)
 
-	if(variable == "kids"){
+	if("kids" %in% variable){
 		mn <- mn %>%
 			dplyr::mutate(population_under5 = .data$under5_male + .data$under5_female) %>%
 			dplyr::select(-.data$under5_male, -.data$under5_female)
 	}
+
+	mn
 
 
 }

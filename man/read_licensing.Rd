@@ -6,7 +6,7 @@
 \usage{
 read_licensing(
   table = "provider",
-  version = "2021-04",
+  version,
   filetype = "rds",
   filled = FALSE,
   GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")
