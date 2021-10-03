@@ -80,7 +80,7 @@ acs_pivot_wider <- function(data, geography){
 			dplyr::mutate(census_place_id_2010 = paste0(.data$state, .data$place),
 						  census_place_2010 = stringr::str_remove(.data$NAME, " CDP, Minnesota| city, Minnesota")) %>%
 			dplyr::select(-.data$place) %>%
-			dplyr::filter(!census_place_id_2010 %in% c("2718440", "2739394"))
+			dplyr::filter(!.data$census_place_id_2010 %in% c("2718440", "2739394"))
 	}
 
 	else if(geography == "county"){
