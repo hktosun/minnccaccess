@@ -37,45 +37,34 @@ We started by going over all the files of type `.zip`, `.xls`, `.xlsx`, `.csv`, 
 
 #### Determining supersets and subsets
 
-We went over every file by opening the files in Excel and checking their content. He wrote a log summarizing his findings on the contents of the file and their superset/subset status. 
+We went over every file by opening the files in Excel and checking their content. We wrote a log summarizing our findings on the contents of the file and their superset/subset status. 
 
-Then, we created a crosswalk table that contains information on the supersets of each file. Remember that a superset is a superset of itself. Then, he wrote a script that checks whether a subset is really a subset of its superset. 
+Then, we created a crosswalk table that contains information on the supersets of each file. Remember that a superset is a superset of itself. Then, we wrote a script that checks whether a subset is really a subset of its superset. 
 
 We also checked whether the crosswalk table contains all the Nware files in the raw folder.
 
 #### Determining the table type
 
-We checked every file to determine what type of a table that file contains. He used this information to rename the files.
+We checked every file to determine what type of a table that file contains. We used this information to rename the files.
 
 #### Determining the date
 
-We used the folder names and/or the file names to determine the date the data contained in the file is captured from the database. He used this information to rename the files.
+We used the folder names and/or the file names to determine the date the data contained in the file is captured from the database. We used this information to rename the files.
 
 ### Renaming the files
 
 We renamed a copy of each superset and moved them to a new folder, `Data Cabinet/Nware/Step 1 Data`. The naming convention is as follows. The first part of the name contains information on the type of data that the file contains. The types are `general`, `population`, `provider`, `provider_address`, `provider_attributes`, `provider_name`, `provider_schedule`, `shift` and `rate`. The second part of the name is the ISO 8601-formatted date of the snapshot.
 
-Then, we created a crosswalk table that contains the old and the new paths of the files. Then, he wrote a script that checks whether the old and the new files are actually the same. He manually checked the file names, by checking whether the file name actually represents the correct table type and the snapshot date.
+Then, we created a crosswalk table that contains the old and the new paths of the files. Then, we wrote a script that checks whether the old and the new files are actually the same. We manually checked the file names, by checking whether the file name actually represents the correct table type and the snapshot date.
 
-
-Logs:
-
-  - [2020-02-17, Rodrigo](https://drive.google.com/file/d/1vB6CHurv5bBsMJWRUfXdjU7t2BfsNJoq)
-  - [2020-02-23, Hasan](https://drive.google.com/file/d/1qPkDYBf0edxnQYPd5bfloitzL4ra0St9)
-  - [2020-03-02, Rodrigo](https://drive.google.com/open?id=1FLH1k_5teqoYkRiKjP0bPo01qs-pXfDl)
-  - [2020-03-04, Hasan](https://drive.google.com/open?id=1LezURu_9Km2YfIG2GZwPRYYL7UwOS8Q8)
-  - [2020-03-04, Rodrigo](https://drive.google.com/open?id=16ju4FSMv21lX19GRkuIr2ewNv0bkyYr3)
-  - [2020-03-18, Rodrigo](https://drive.google.com/open?id=1h8ndYDgqPWV8Opz49d3k5vcwnrYY0vO4)
-  - [2020-04-20, Hasan](https://drive.google.com/open?id=1MrAeh0jUTaaFGzd82GP_ks7fWEWPwW6B)
-  
 
 ## Step 2: Merging across snapshots for each table
 
 In this step, we do two things. First, we had multiple periods of time for each table, since there were many snapshots. We should have merged the tables so that we have the data for each table for all dates in a single dataframe. Second, some variables changed tables over time. For example, a variable in `general` table before 2017 started to appear in `provider_name` table starting 2017. In addition, there were multiple tables with the same unit of observation. We decided to combine all the tables with the unit of observation into a single panel. We also change variable names in this step to camel case. 
 
-### Variable names
+### Renaming the variables
 
-Please refer to [the variable name crosswalk](https://drive.google.com/open?id=1QMqoB6pJil4zPFQ_A-MKLGEFw9VK6nwk) for the old and the new versions of the variable names. Renaming the variables before merging the files allowed us to avoid having multiple columns for the same variable (with a different name across snapshots).
+Renaming the variables before merging the files allowed us to avoid having multiple columns for the same variable (with a different name across snapshots).
 
 
 ### Merging across time
@@ -98,7 +87,6 @@ There are four different units of observations we found in the original tables.
 
 It is important to note that `general` also contains group 2, group 3 and group 4 -type data before 2017 in a very messy way. We will talk about how we take those variables and move them to their corresponding tables in the following sections.
 
-## Step 3: Cleaning the variables
 
 
 
