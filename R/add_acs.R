@@ -26,7 +26,7 @@ add_acs <- function(data, variable, geography, year = 2019, by_name = FALSE, CEN
 	}
 
 	data %>%
-		dplyr::inner_join(acs_df, by = geography_var)
+		dplyr::left_join(acs_df, by = geography_var)
 
 
 }
