@@ -11,6 +11,7 @@ reference:
   - read_public
   - read_pecc
   - read_parentaware
+  - read_vpk
 - title: Plot maps
 - contents:
   - plot_map
@@ -33,6 +34,8 @@ reference:
 - title: Other
 - contents:
   - get_geometry
+  - to_planar
+  - to_longlat
 
 authors:
   Hasan Tosun:
