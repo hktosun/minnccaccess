@@ -2,13 +2,20 @@
 % Please edit documentation in R/read_vpk.R
 \name{read_vpk}
 \alias{read_vpk}
-\title{Load VPK data}
+\title{Read VPK data}
 \usage{
 read_vpk(source = "enrollment", geography = "census-place", geo_year = 2010)
 }
 \arguments{
 \item{source}{"enrollment" or "allocation"}
+
+\item{geography}{Geographic unit attached to the VPK data}
+
+\item{geo_year}{Vintage of the geography}
+}
+\value{
+A tibble
 }
 \description{
-Load VPK data using various sources
+Read VPK data using various sources
 }
