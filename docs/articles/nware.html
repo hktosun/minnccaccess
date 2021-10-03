@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">minnccaccess</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9006</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -54,13 +54,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/child_care_access_map.html">Child Care Access Map</a>
-    </li>
-    <li>
       <a href="../articles/nware.html">Nware Data Cleaning</a>
-    </li>
-    <li>
-      <a href="../articles/read_licensing.html">Licensing Data</a>
     </li>
     <li>
       <a href="../articles/read_public.html">Public School Enrollment Data</a>
@@ -119,46 +113,36 @@
 <div id="determining-supersets-and-subsets" class="section level4">
 <h4 class="hasAnchor">
 <a href="#determining-supersets-and-subsets" class="anchor"></a>Determining supersets and subsets</h4>
-<p>We went over every file by opening the files in Excel and checking their content. He wrote a log summarizing his findings on the contents of the file and their superset/subset status.</p>
-<p>Then, we created a crosswalk table that contains information on the supersets of each file. Remember that a superset is a superset of itself. Then, he wrote a script that checks whether a subset is really a subset of its superset.</p>
+<p>We went over every file by opening the files in Excel and checking their content. We wrote a log summarizing our findings on the contents of the file and their superset/subset status.</p>
+<p>Then, we created a crosswalk table that contains information on the supersets of each file. Remember that a superset is a superset of itself. Then, we wrote a script that checks whether a subset is really a subset of its superset.</p>
 <p>We also checked whether the crosswalk table contains all the Nware files in the raw folder.</p>
 </div>
 <div id="determining-the-table-type" class="section level4">
 <h4 class="hasAnchor">
 <a href="#determining-the-table-type" class="anchor"></a>Determining the table type</h4>
-<p>We checked every file to determine what type of a table that file contains. He used this information to rename the files.</p>
+<p>We checked every file to determine what type of a table that file contains. We used this information to rename the files.</p>
 </div>
 <div id="determining-the-date" class="section level4">
 <h4 class="hasAnchor">
 <a href="#determining-the-date" class="anchor"></a>Determining the date</h4>
-<p>We used the folder names and/or the file names to determine the date the data contained in the file is captured from the database. He used this information to rename the files.</p>
+<p>We used the folder names and/or the file names to determine the date the data contained in the file is captured from the database. We used this information to rename the files.</p>
 </div>
 </div>
 <div id="renaming-the-files" class="section level3">
 <h3 class="hasAnchor">
 <a href="#renaming-the-files" class="anchor"></a>Renaming the files</h3>
 <p>We renamed a copy of each superset and moved them to a new folder, <code>Data Cabinet/Nware/Step 1 Data</code>. The naming convention is as follows. The first part of the name contains information on the type of data that the file contains. The types are <code>general</code>, <code>population</code>, <code>provider</code>, <code>provider_address</code>, <code>provider_attributes</code>, <code>provider_name</code>, <code>provider_schedule</code>, <code>shift</code> and <code>rate</code>. The second part of the name is the ISO 8601-formatted date of the snapshot.</p>
-<p>Then, we created a crosswalk table that contains the old and the new paths of the files. Then, he wrote a script that checks whether the old and the new files are actually the same. He manually checked the file names, by checking whether the file name actually represents the correct table type and the snapshot date.</p>
-<p>Logs:</p>
-<ul>
-<li><a href="https://drive.google.com/file/d/1vB6CHurv5bBsMJWRUfXdjU7t2BfsNJoq">2020-02-17, Rodrigo</a></li>
-<li><a href="https://drive.google.com/file/d/1qPkDYBf0edxnQYPd5bfloitzL4ra0St9">2020-02-23, Hasan</a></li>
-<li><a href="https://drive.google.com/open?id=1FLH1k_5teqoYkRiKjP0bPo01qs-pXfDl">2020-03-02, Rodrigo</a></li>
-<li><a href="https://drive.google.com/open?id=1LezURu_9Km2YfIG2GZwPRYYL7UwOS8Q8">2020-03-04, Hasan</a></li>
-<li><a href="https://drive.google.com/open?id=16ju4FSMv21lX19GRkuIr2ewNv0bkyYr3">2020-03-04, Rodrigo</a></li>
-<li><a href="https://drive.google.com/open?id=1h8ndYDgqPWV8Opz49d3k5vcwnrYY0vO4">2020-03-18, Rodrigo</a></li>
-<li><a href="https://drive.google.com/open?id=1MrAeh0jUTaaFGzd82GP_ks7fWEWPwW6B">2020-04-20, Hasan</a></li>
-</ul>
+<p>Then, we created a crosswalk table that contains the old and the new paths of the files. Then, we wrote a script that checks whether the old and the new files are actually the same. We manually checked the file names, by checking whether the file name actually represents the correct table type and the snapshot date.</p>
 </div>
 </div>
 <div id="step-2-merging-across-snapshots-for-each-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-2-merging-across-snapshots-for-each-table" class="anchor"></a>Step 2: Merging across snapshots for each table</h2>
 <p>In this step, we do two things. First, we had multiple periods of time for each table, since there were many snapshots. We should have merged the tables so that we have the data for each table for all dates in a single dataframe. Second, some variables changed tables over time. For example, a variable in <code>general</code> table before 2017 started to appear in <code>provider_name</code> table starting 2017. In addition, there were multiple tables with the same unit of observation. We decided to combine all the tables with the unit of observation into a single panel. We also change variable names in this step to camel case.</p>
-<div id="variable-names" class="section level3">
+<div id="renaming-the-variables" class="section level3">
 <h3 class="hasAnchor">
-<a href="#variable-names" class="anchor"></a>Variable names</h3>
-<p>Please refer to <a href="https://drive.google.com/open?id=1QMqoB6pJil4zPFQ_A-MKLGEFw9VK6nwk">the variable name crosswalk</a> for the old and the new versions of the variable names. Renaming the variables before merging the files allowed us to avoid having multiple columns for the same variable (with a different name across snapshots).</p>
+<a href="#renaming-the-variables" class="anchor"></a>Renaming the variables</h3>
+<p>Renaming the variables before merging the files allowed us to avoid having multiple columns for the same variable (with a different name across snapshots).</p>
 </div>
 <div id="merging-across-time" class="section level3">
 <h3 class="hasAnchor">
@@ -179,10 +163,6 @@
 <p><code>general</code>, <code>provider</code>, <code>provider_address</code>, <code>provider_attributes</code> and <code>provider_name</code> are in the first group. <code>shift</code> is in the second group. <code>population</code> and <code>rates</code> are in the third group. Finally, <code>provider_schedule</code> is in the fourth group. This means that we can actually have 4 tables instead of 9, by merging the tables with the same units of observations by using the correct primary/foreign keys.</p>
 <p>It is important to note that <code>general</code> also contains group 2, group 3 and group 4 -type data before 2017 in a very messy way. We will talk about how we take those variables and move them to their corresponding tables in the following sections.</p>
 </div>
-</div>
-<div id="step-3-cleaning-the-variables" class="section level2">
-<h2 class="hasAnchor">
-<a href="#step-3-cleaning-the-variables" class="anchor"></a>Step 3: Cleaning the variables</h2>
 </div>
   </div>
 
