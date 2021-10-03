@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">minnccaccess</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9006</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -95,13 +95,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/child_care_access_map.html">Child Care Access Map</a>
-    </li>
-    <li>
       <a href="../articles/nware.html">Nware Data Cleaning</a>
-    </li>
-    <li>
-      <a href="../articles/read_licensing.html">Licensing Data</a>
     </li>
     <li>
       <a href="../articles/read_public.html">Public School Enrollment Data</a>
@@ -133,7 +127,7 @@
     <p>Read Parent Aware Data from the shared Google Drive folder.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_parentaware</span><span class='op'>(</span>filetype <span class='op'>=</span> <span class='st'>"rds"</span>, gdrive_root <span class='op'>=</span> <span class='st'>"~/Google Drive"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>read_parentaware</span><span class='op'>(</span>filetype <span class='op'>=</span> <span class='st'>"rds"</span>, GDRIVE_ROOT <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"GDRIVE_ROOT"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,8 +137,8 @@
       <td><p>"rds" or "csv". Defaults to "rds".</p></td>
     </tr>
     <tr>
-      <th>gdrive_root</th>
-      <td><p>The local path to the folder that contains the MinnCCAccess folder. Defaults to "~/Google Drive".</p></td>
+      <th>GDRIVE_ROOT</th>
+      <td><p>The local path to the folder that contains the MinnCCAccess folder.</p></td>
     </tr>
     </table>
 
