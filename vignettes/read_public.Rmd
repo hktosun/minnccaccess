@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-[`minnccaccess:read_public()`](../reference/read_public.html) loads public school enrollment between SY1999 and SY2021.
+[`read_public()`](../reference/read_public.html) loads public school enrollment between SY1999 and SY2021.
 
 The raw data files are downloaded from [MDE Website](https://public.education.mn.gov/MDEAnalytics/DataTopic.jsp?TOPICID=2).
 
