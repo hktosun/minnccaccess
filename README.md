@@ -6,8 +6,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of minnccaccess is to provide R functions to ease the use of
-data files.
+This package provides access to the functions that make easier to read
+data, import data from Decennial Census and ACS, and plot maps for the
+Minnesota Child Care Access research team.
 
 ## Installation
 
