@@ -40,3 +40,6 @@ reference:
 authors:
   Hasan Tosun:
     href: "http://hasantosun.ca"
+
+template:
+  package: preferably
