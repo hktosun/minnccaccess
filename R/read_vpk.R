@@ -10,10 +10,10 @@
 #' @export
 #'
 #'
-read_vpk <- function(source = "enrollment", geography = "census-place", geo_year = 2010){
+read_vpk <- function(source = "enrollment", geography = "census-place", geo_year = 2010, GDRIVE_ROOT = Sys.getenv("GDRIVE_ROOT")){
 
 	if(source == "enrollment"){
-		vpk_locs <- read_public() %>%
+		vpk_locs <- read_public(GDRIVE_ROOT = GDRIVE_ROOT) %>%
 			dplyr::filter(.data$grade == "PK", .data$year >= 2017) %>%
 			dplyr::mutate(school_district_id = dplyr::case_when(
 				.data$school_district_id == "2909-01" & .data$year == 2021 ~ "0706-01",
