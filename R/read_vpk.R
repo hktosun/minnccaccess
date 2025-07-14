@@ -19,15 +19,15 @@ read_vpk <- function(source = "enrollment", geography = "census-place", geo_year
 				.data$school_district_id == "2909-01" & .data$year == 2021 ~ "0706-01",
 				TRUE ~ .data$school_district_id
 			))
-
+		school_locations <- get_geometry('school-location', 2020, GDRIVE_ROOT = GDRIVE_ROOT)
 		df <- vpk_locs %>%
-			dplyr::left_join(get_geometry("school-location", 2020), by = c("school_district_id", "school_number")) %>%
+			dplyr::left_join(school_locations, by = c("school_district_id", "school_number")) %>%
 			sf::st_as_sf() %>%
 			dplyr::select(.data$year, .data$school_district_id, .data$school_number, .data$school_name, n = .data$count)
 
-
+		geom <- get_geometry(geography, geo_year, GDRIVE_ROOT = GDRIVE_ROOT)
 		df <- df %>%
-			sf::st_join(get_geometry(geography, geo_year), join = sf::st_within)
+			sf::st_join(geom, join = sf::st_within)
 
 		df
 	}
